@@ -1,33 +1,18 @@
 <?php
 
-/*
-  +------------------------------------------------------------------------+
-  | Vökuró                                                                 |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file LICENSE.txt.                             |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@phalconphp.com so we can send you a copy immediately.       |
-  +------------------------------------------------------------------------+
-*/
-
 namespace Timetracker\Auth;
 
-use Vokuro\Models\Users;
+use Timetracker\Models\Users;
 use Phalcon\Mvc\User\Component;
-use Vokuro\Models\FailedLogins;
-use Vokuro\Exception\Exception;
-use Vokuro\Models\SuccessLogins;
-use Vokuro\Models\RememberTokens;
+use Timetracker\Models\FailedLogins;
+use Timetracker\Exception\Exception;
+use Timetracker\Models\SuccessLogins;
+use Timetracker\Models\RememberTokens;
 
 /**
- * Manages Authentication/Identity Management in Vokuro
- * Vokuro\Auth\Auth
- * @package Vokuro\Auth
+ * Manages Authentication/Identity Management in Timetracker
+ * Timetracker\Auth\Auth
+ * @package Timetracker\Auth
  */
 class Auth extends Component
 {
@@ -74,7 +59,7 @@ class Auth extends Component
     /**
      * Creates the remember me environment settings the related cookies and generating tokens
      *
-     * @param \Vokuro\Models\Users $user
+     * @param \Timetracker\Models\Users $user
      * @throws Exception
      */
     public function saveSuccessLogin($user)
@@ -129,7 +114,7 @@ class Auth extends Component
     /**
      * Creates the remember me environment settings the related cookies and generating tokens
      *
-     * @param \Vokuro\Models\Users $user
+     * @param \Timetracker\Models\Users $user
      */
     public function createRememberEnvironment(Users $user)
     {
@@ -212,7 +197,7 @@ class Auth extends Component
     /**
      * Checks if the user is banned/inactive/suspended
      *
-     * @param \Vokuro\Models\Users $user
+     * @param \Timetracker\Models\Users $user
      * @throws Exception
      */
     public function checkUserFlags(Users $user)
@@ -298,7 +283,7 @@ class Auth extends Component
     /**
      * Get the entity related to user in the active identity
      *
-     * @return \Vokuro\Models\Users
+     * @return \Timetracker\Models\Users
      * @throws Exception
      */
     public function getUser()

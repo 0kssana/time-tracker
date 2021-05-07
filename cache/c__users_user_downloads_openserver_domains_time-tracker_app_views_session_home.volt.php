@@ -1,3 +1,7 @@
+<?php
+ echo 'this page clear <br>';
+
+echo '<hr><br>';
 
 //To count the number of working days for the specified period
 
