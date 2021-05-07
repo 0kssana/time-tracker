@@ -39,7 +39,9 @@ class SessionController extends ControllerBase
             if ($form->isValid($this->request->getPost()) != false) {
                 $user = new Users([
                     'name' => $this->request->getPost('name', 'striptags'),
+                    'login' => $this->request->getPost('login'),
                     'email' => $this->request->getPost('email'),
+                    'role' => $this->request->getPost('role'),
                     'password' => $this->security->hash($this->request->getPost('password')),
                     'profilesId' => 2
                 ]);

@@ -36,6 +36,20 @@ class SignUpForm extends Form
 
         $this->add($name);
 
+        // Login
+
+        $login = new Text('login');
+
+        $login->setLabel('Login');
+
+        $login->addValidators([
+            new PresenceOf([
+                'message' => 'The login is required'
+            ]),
+        ]);
+
+        $this->add($login);
+
         // Email
         $email = new EmailText('email');
 
@@ -51,6 +65,20 @@ class SignUpForm extends Form
         ]);
 
         $this->add($email);
+
+        // Role
+
+        $role = new Text('role');
+
+        $role->setLabel('Role');
+
+        $role->addValidators([
+            new PresenceOf([
+                'message' => 'The role is required'
+            ]),
+        ]);
+
+        $this->add($role);
 
         // Password
         $password = new Password('password');

@@ -9,9 +9,9 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        $users = Users::findfirst(1)->toArray();
 
-        $this->view->setVar('users', $users);
+        $this->view->users = Users::find();
+
     }
 
 }

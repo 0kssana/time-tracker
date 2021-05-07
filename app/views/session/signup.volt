@@ -13,10 +13,24 @@
                 </div>
             </div>
             <div class="form-group row">
+                {{ form.label('login', ['class' : 'col-md-3 col-form-label']) }}
+                <div class="col-md-9">
+                    {{ form.render('login', ['class' : 'form-control ']) }}
+                    {{ form.messages('login') }}
+                </div>
+            </div>
+            <div class="form-group row">
                 {{ form.label('email', ['class' : 'col-md-3 col-form-label']) }}    
                 <div class="col-md-9">
                     {{ form.render('email' , ['class' : 'form-control ']) }}
                     {{ form.messages('email') }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ form.label('role', ['class' : 'col-md-3 col-form-label']) }}
+                <div class="col-md-9">
+                    {{ form.render('role', ['class' : 'form-control ']) }}
+                    {{ form.messages('role') }}
                 </div>
             </div>
             <div class="form-group row">
