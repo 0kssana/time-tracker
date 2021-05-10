@@ -1,7 +1,6 @@
 <?php
- echo 'this page clear <br>';
 
-echo '<hr><br>';
+
 
 //To count the number of working days for the specified period
 
@@ -50,6 +49,8 @@ $holidays = array("2008-12-25", "2008-12-26", "2009-01-01");
 
 
  }
- getWorkingDays("2021-05-01", "2021-05-31", $holidays);
+ getWorkingDays(date('Y-m-01'), date('Y-m-t'), $holidays);
 
         ?>
+
+

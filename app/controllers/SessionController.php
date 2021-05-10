@@ -11,8 +11,8 @@ use Timetracker\Models\ResetPasswords;
 
 /**
  * Controller used handle non-authenticated session actions like login/logout, user signup, and forgotten passwords
- * Vokuro\Controllers\SessionController
- * @package Vokuro\Controllers
+ * Timetracker\Controllers\SessionController
+ * @package Timetracker\Controllers
  */
 class SessionController extends ControllerBase
 {

@@ -16,8 +16,8 @@ use Phalcon\Validation\Validator\StringLength;
 use Phalcon\Validation\Validator\Confirmation;
 
 /**
- * Vokuro\Forms\SignUpForm
- * @package Vokuro\Forms
+ * Timetracker\Forms\SignUpForm
+ * @package Timetracker\Forms
  */
 class SignUpForm extends Form
 {

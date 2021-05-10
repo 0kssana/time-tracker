@@ -7,9 +7,9 @@ use Phalcon\Mvc\Dispatcher;
 
 /**
  * ControllerBase. This is the base controller for all controllers in the application
- * Vokuro\Controllers\ProfilesController
- * @property \Vokuro\Auth\Auth auth
- * @package Vokuro\Controllers
+ * Timetracker\Controllers\ProfilesController
+ * @property \Timetracker\Auth\Auth auth
+ * @package Timetracker\Controllers
  */
 
 class ControllerBase extends Controller
