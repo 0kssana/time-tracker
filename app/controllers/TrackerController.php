@@ -22,23 +22,26 @@ class TrackerController extends ControllerBase
     public function testAction()
     {
 //
-        $state = "";
-        $state = $_POST['state'];
+        $state = "start";
+//
+////        $state = $_POST['state'];
         if(isset($_POST['state'])){
             $state = $_POST['state'];
         }
+        $time_now = date("H:i:s");
 
-        $date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
-        $time_now = $date->format('H:i');
+
+
+
         if($state == "start"){
 
-            $time = new Time();
+            $time = new Tracker();
             $time->start_time = $time_now;
             $time->state = $state;
 //            $time->stopped_time = $stop_time;
             $time->save();
         }else if($state == "stop"){
-            $time = Time::findFirst("state = 'start'");
+            $time = Tracker::findFirst("state = 'start'");
             $time->stop_time = $time_now;
             $time->state = 'stop';
             $time->update();
@@ -48,15 +51,18 @@ class TrackerController extends ControllerBase
 //            return json_encode($time->stopped_time);
 
         }
+//        print_die(123);
 
-
-        $time = Time::find();
-        $last = $time->getLast();
-        $start = $last->start_time;
-        $stop = $last->stop_time;
-        $result = (strtotime($start) - strtotime($stop) ) / 60;
+        $time = Tracker::find();
+//        $last = $time->getLast();
+//        $start = $last->start_time;
+//        $stop = $last->stop_time;
+//        $result = (strtotime($start) - strtotime($stop) ) / 60;
         return json_encode($time);
-//
+
+
+
+
 //        $this->view->setVars(
 //            [
 //                'total' => $result
@@ -84,6 +90,9 @@ class TrackerController extends ControllerBase
 
     public function staffAction()
     {
+
+        $x = date("H:i:s");
+        print_die($x);
 
         $time = new Time();
 //        if (isset($_POST['start'])) {
@@ -133,11 +142,11 @@ class TrackerController extends ControllerBase
 //        }
 //        $this->assets
 //            ->addJs('js/main.js');
-
-
-//        print_die($name);
-        $robotsParts = $time->getUsers();
-        print_die($robotsParts);
+//
+//
+////        print_die($name);
+//        $robotsParts = $time->getUsers();
+//        print_die($robotsParts);
     }
 
 

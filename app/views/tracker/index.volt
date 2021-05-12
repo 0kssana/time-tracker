@@ -28,7 +28,7 @@ $('#timerbutton').on('click',function (event){
     }else{
         $(this).prop('value', 'start');
     }
- console.log('test');
+ console.log(state);
     $.ajax({
         type: "POST",
         url: "test",
