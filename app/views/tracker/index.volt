@@ -1,15 +1,10 @@
-<?php echo $this->tag->form("tracker/staff"); ?>
 
-<?php
-$date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
-$time = $date->format('H:i:s');
-?>
+<!--
+<p>
+    <label for="name">start</label>
+   <?php echo $this->tag->textField("name"); ?>
+</p> -->
 
-<!--<p>-->
-<!--    <label for="name">start</label>-->
-<!--    --><?php ////echo $this->tag->textField("name"); ?>
-<!--</p>-->
-<!---->
 <?php $this->assets->outputJs() ?>
     <input id="id" type="hidden" name="id" value="" />
 <input id="timerbutton"  class="mk" type="button" name="timerbutton" value="start" />
@@ -23,19 +18,38 @@ $time = $date->format('H:i:s');
     <tn id="start-test"></tn>
 </tr>
 </table>
-<!--<script>-->
-<!--$('#start').on('click',function (event){-->
-<!--    event.preventDefault();-->
-<!--    $.ajax({-->
-<!--        type: "POST",-->
-<!--        url: "test",-->
-<!--        dataType: "json",-->
-<!--        success: function(data) {-->
-<!--            var test = JSON.parse(data);-->
-<!--            console.log(test);-->
-<!--            $('#start-test').attr('data-id', test);-->
-<!--        }-->
-<!--    });-->
-<!--});-->
-<!---->
-<!--</script>-->
+
+ <script>
+$('#timerbutton').on('click',function (event){
+    event.preventDefault();
+    let state = $(this).val();
+    if(state == "start"){
+        $(this).prop('value', 'stop');
+    }else{
+        $(this).prop('value', 'start');
+    }
+ console.log('test');
+    $.ajax({
+        type: "POST",
+        url: "test",
+        dataType: 'json',
+        data: {
+            "state": state
+        },         // данные, которые отправляем на сервер
+
+        success: function(data) {
+
+            $("#timertable").empty();
+
+            console.log(data);
+            $.each(data, function( index, value ) {
+                console.log( "start time" + ": " + value['start_time'] );
+                console.log( "stop time" + ": " + value['stop_time'] );
+                $("#timertable").append("<tr><td>"+value['start_time']+" <> </td><td>"+value['stop_time'] +"</td></tr>");
+            });
+
+        }
+    });
+
+});
+</script>

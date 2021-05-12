@@ -8,6 +8,7 @@ class Tracker extends Model
 {
     public function initialize()
     {
+        $this->setSchema("timetracker");
         $this->setSource('time');
     }
 }
