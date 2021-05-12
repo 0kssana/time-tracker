@@ -79,6 +79,7 @@ class Users extends \Phalcon\Mvc\Model
     {
         $this->setSchema("timetracker");
         $this->setSource("users");
+        $this->hasMany('id', 'Tracker', 'id');
     }
 
     /**

@@ -26,6 +26,14 @@ class UsersController extends ControllerBase
         $this->persistent->conditions = null;
         $this->view->form = new UsersForm();
 
+
+//        $time = Users::find();
+//        $this->view->setVars(
+//            [
+//                'users' => $time
+//            ]
+//        );
+
     }
 
     /**
@@ -96,7 +104,7 @@ class UsersController extends ControllerBase
     }
 
     /**
-     * Saves the user from the 'edit' action
+     * Saves the users from the 'edit' action
      */
     public function editAction($id)
     {
@@ -206,4 +214,8 @@ class UsersController extends ControllerBase
 
         $this->view->form = $form;
     }
+
+
+
+
 }

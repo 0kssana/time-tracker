@@ -17,7 +17,7 @@ use Timetracker\Models\RememberTokens;
 class Auth extends Component
 {
     /**
-     * Checks the user credentials
+     * Checks the users credentials
      *
      * @param array $credentials
      * @return boolean
@@ -25,7 +25,7 @@ class Auth extends Component
      */
     public function check($credentials)
     {
-        // Check if the user exist
+        // Check if the users exist
         $user = Users::findFirstByEmail($credentials['email']);
         if ($user == false) {
             $this->registerUserThrottling(0);
@@ -38,7 +38,7 @@ class Auth extends Component
             throw new Exception('Wrong email/password combination');
         }
 
-        // Check if the user was flagged
+        // Check if the users was flagged
         $this->checkUserFlags($user);
 
         // Register the successful login
@@ -169,7 +169,7 @@ class Auth extends Component
                 if ($remember) {
                     // Check if the cookie has not expired
                     if ((time() - (86400 * 8)) < $remember->createdAt) {
-                        // Check if the user was flagged
+                        // Check if the users was flagged
                         $this->checkUserFlags($user);
 
                         // Register identity
@@ -195,7 +195,7 @@ class Auth extends Component
     }
 
     /**
-     * Checks if the user is banned/inactive/suspended
+     * Checks if the users is banned/inactive/suspended
      *
      * @param \Timetracker\Models\Users $user
      * @throws Exception
@@ -203,15 +203,15 @@ class Auth extends Component
     public function checkUserFlags(Users $user)
     {
         if ($user->active != 'Y') {
-            throw new Exception('The user is inactive');
+            throw new Exception('The users is inactive');
         }
 
         if ($user->banned != 'N') {
-            throw new Exception('The user is banned');
+            throw new Exception('The users is banned');
         }
 
         if ($user->suspended != 'N') {
-            throw new Exception('The user is suspended');
+            throw new Exception('The users is suspended');
         }
     }
 
@@ -237,7 +237,7 @@ class Auth extends Component
     }
 
     /**
-     * Removes the user identity information from session
+     * Removes the users identity information from session
      */
     public function remove()
     {
@@ -259,7 +259,7 @@ class Auth extends Component
     }
 
     /**
-     * Auths the user by his/her id
+     * Auths the users by his/her id
      *
      * @param int $id
      * @throws Exception
@@ -268,7 +268,7 @@ class Auth extends Component
     {
         $user = Users::findFirstById($id);
         if ($user == false) {
-            throw new Exception('The user does not exist');
+            throw new Exception('The users does not exist');
         }
 
         $this->checkUserFlags($user);
@@ -281,7 +281,7 @@ class Auth extends Component
     }
 
     /**
-     * Get the entity related to user in the active identity
+     * Get the entity related to users in the active identity
      *
      * @return \Timetracker\Models\Users
      * @throws Exception
@@ -292,7 +292,7 @@ class Auth extends Component
         if (isset($identity['id'])) {
             $user = Users::findFirstById($identity['id']);
             if ($user == false) {
-                throw new Exception('The user does not exist');
+                throw new Exception('The users does not exist');
             }
 
             return $user;
@@ -302,7 +302,7 @@ class Auth extends Component
     }
     
     /**
-     * Returns the current token user
+     * Returns the current token users
      *
      * @param string $token
      * @return boolean
@@ -321,7 +321,7 @@ class Auth extends Component
     }
 
     /**
-     * Delete the current user token in session
+     * Delete the current users token in session
      */
     public function deleteToken($userId) 
     {

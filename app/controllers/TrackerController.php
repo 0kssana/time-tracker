@@ -4,7 +4,7 @@ namespace Timetracker\Controllers;
 
 use Phalcon\Mvc\Controller;
 use Timetracker\Models\Tracker;
-
+use Timetracker\Models\Users;
 
 
 class TrackerController extends ControllerBase
@@ -22,6 +22,8 @@ class TrackerController extends ControllerBase
     public function testAction()
     {
 //
+
+
         $state = "start";
 //
 ////        $state = $_POST['state'];
@@ -71,13 +73,13 @@ class TrackerController extends ControllerBase
 
 //        print_die($last);
     }
-    public function timesAction()
+    public function timesAction($id)
     {
 //        $this->assets
 //            ->addJs('js/main.js');
-        $time = Time::find();
-        $time->toArray();
-        print_die($time->toArray());
+//        $time = Time::find();
+//        $time->toArray();
+//        print_die($time->toArray());
 //        $this->view->setVars(
 //            [
 //                'times' => $time
@@ -86,15 +88,24 @@ class TrackerController extends ControllerBase
 
 
 
+
+
     }
 
     public function staffAction()
     {
+//
+//        $x = date("H:i:s");
+//        print_die($x);
+//
+//        $time = new Time();
 
-        $x = date("H:i:s");
-        print_die($x);
 
-        $time = new Time();
+        $user = Users::find();
+        print_die($user->toArray());
+
+
+
 //        if (isset($_POST['start'])) {
 //            $date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
 //            $start_time = $date->format('H:i:s');

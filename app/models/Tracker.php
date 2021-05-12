@@ -10,5 +10,6 @@ class Tracker extends Model
     {
         $this->setSchema("timetracker");
         $this->setSource('time');
+        $this->belongsTo('id', 'Users', 'user_id');
     }
 }

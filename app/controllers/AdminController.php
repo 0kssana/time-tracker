@@ -34,7 +34,7 @@ class AdminController extends ControllerBase
             $user->role = 1;
             $user->save();
 
-            $this->flash->success('New user saved');
+            $this->flash->success('New users saved');
             return $this->dispatcher->forward(
                 [
                     "controller" => "admin",

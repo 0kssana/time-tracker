@@ -31,14 +31,14 @@ $('#timerbutton').on('click',function (event){
  console.log(state);
     $.ajax({
         type: "POST",
-        url: "test",
+        url: "Tracker/test",
         dataType: 'json',
         data: {
             "state": state
         },         // данные, которые отправляем на сервер
 
         success: function(data) {
-
+console.log(data);
             $("#timertable").empty();
 
             console.log(data);

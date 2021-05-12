@@ -10,7 +10,7 @@ use Timetracker\Models\ResetPasswords;
 
 
 /**
- * Controller used handle non-authenticated session actions like login/logout, user signup, and forgotten passwords
+ * Controller used handle non-authenticated session actions like login/logout, users signup, and forgotten passwords
  * Timetracker\Controllers\SessionController
  * @package Timetracker\Controllers
  */
@@ -29,7 +29,7 @@ class SessionController extends ControllerBase
     }
 
     /**
-     * Allow a user to signup to the system
+     * Allow a users to signup to the system
      */
     public function signupAction()
     {
