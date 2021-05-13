@@ -4,12 +4,19 @@
              aria-controls="nav-content" area-expanded="false" aria-label="Toggle Navigation">
          <span class="oi oi-menu" title="MENU" aria-hidden="true"></span>
     </button>
+    <div class="dropdown collapse navbar-collapse" id="nav-content">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="background: #7fb0ff;">
+            Home button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/tracker">Time button</a>
+            <a class="dropdown-item" href="#">Change password</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
 
-    <div class="collapse navbar-collapse" id="nav-content">  
-         <ul class="navbar-nav">
-            <li class="nav-item"><a href="/session/home" class="nav-link">Home</a></li>
-         </ul>
-    </div> <!-- navbar-collapse -->
+    <!-- navbar-collapse -->
 
     <a href="/" class="navbar-brand">Time-Tracker</a>
 
@@ -29,7 +36,7 @@
 
 <nav class="navbar navbar-light bg-light">
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+  <!--      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
             Home button
         </button>
@@ -37,7 +44,7 @@
             <a class="dropdown-item" href="/tracker">Time button</a>
             <a class="dropdown-item" href="#">Change password</a>
             <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+        </div> -->
     </div>
 
      <div class="dropdown">
@@ -48,7 +55,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/user">Users</a>
             <a class="dropdown-item" href="#">Holidays</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="/session/signup">New User</a>
         </div>
     </div>
 </nav>

@@ -127,20 +127,20 @@ class SignUpForm extends Form
         ]);
 
         $this->add($confirmPassword);
-
-        // Remember
-        $terms = new Check('terms', [
-            'value' => 'yes'
-        ]);
-
-        $terms->setLabel('Accept terms and conditions');
-
-        $terms->addValidator(new Identical([
-            'value' => 'yes',
-            'message' => 'Terms and conditions must be accepted'
-        ]));
-
-        $this->add($terms);
+//
+//        // Remember
+//        $terms = new Check('terms', [
+//            'value' => 'yes'
+//        ]);
+//
+//        $terms->setLabel('Accept terms and conditions');
+//
+//        $terms->addValidator(new Identical([
+//            'value' => 'yes',
+//            'message' => 'Terms and conditions must be accepted'
+//        ]));
+//
+//        $this->add($terms);
 
         // CSRF
         $csrf = new Hidden('csrf');

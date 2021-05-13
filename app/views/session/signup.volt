@@ -54,13 +54,8 @@
                 {{ form.messages('confirmPassword') }}
             </div>
         </div>
-        <div class="form-group row justify-content-end">
-            <div class="col-md-9">
-                {{ form.render('terms') }}
-                {{ form.label('terms' , ['class': 'col-form-lable']) }}
-                {{ form.messages('terms') }}
-            </div>
-        </div>
+
+
         <div class="form-group row">
             <div class="col-12">
                 {{ form.render('Sign Up', ['class' : 'btn btn-success btn-block']) }}
