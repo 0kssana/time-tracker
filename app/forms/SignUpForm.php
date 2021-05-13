@@ -80,6 +80,20 @@ class SignUpForm extends Form
 
         $this->add($role);
 
+        // Status
+
+        $status = new Text('status');
+
+        $status->setLabel('Status');
+
+//        $status->addValidators([
+//            new PresenceOf([
+//                'message' => 'The status is required'
+//            ]),
+//        ]);
+
+        $this->add($status);
+
         // Password
         $password = new Password('password');
 

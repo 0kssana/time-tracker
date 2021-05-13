@@ -15,7 +15,7 @@ $time = $date->format('H:i:s');
     </p>
 
     <p>
-        <label for="name">Имя</label>
+        <label for="name">Имя</label>t
         <?php echo $this->tag->textField("name"); ?>
     </p>
 

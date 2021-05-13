@@ -16,8 +16,10 @@
         </div>
  </nav>
 
-<main role="main" class="container mt-4">
+ <main role="main" class="container mt-4">
             {{ content() }}
 </main>
+<!--
 {# our common footer #}
 {% include 'partials/footer.volt' %}
+-->

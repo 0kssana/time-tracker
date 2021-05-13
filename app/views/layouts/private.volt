@@ -48,6 +48,6 @@
         <main role="main" class="container mt-4">           
             {{ content() }}            
         </main>
-
+<!--
  {# our common footer #}
-{% include 'partials/footer.volt' %}
+{% include 'partials/footer.volt' %} -->

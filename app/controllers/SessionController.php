@@ -42,6 +42,7 @@ class SessionController extends ControllerBase
                     'login' => $this->request->getPost('login'),
                     'email' => $this->request->getPost('email'),
                     'role' => $this->request->getPost('role'),
+                    'status' => $this->request->getPost('status'),
                     'password' => $this->security->hash($this->request->getPost('password')),
                     'profilesId' => 2
                 ]);

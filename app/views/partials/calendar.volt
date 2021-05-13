@@ -1,10 +1,6 @@
 
 <hr> <br>
 
-
-
-
-
 <?php
 
 
@@ -27,12 +23,12 @@
                echo "</tr>";
 
 
-         foreach ($array_days as $key_d=>$val_w){
-         $day = $key_d+1;
-         echo "<tr>";
-         echo "<td style=\"width: 75px; height: 75px; border: 1px solid #000000; text-align: center;>\" <br> ";
-         echo $day . "<br>" . $val_w . "<br><br></td>";
-          echo str_repeat("<td style=\"width: 75px; height: 75px; border: 1px solid #000000; text-align: center;>\"> </td>", $count)  . '</tr>';
+        foreach ($array_days as $key_d=>$val_w){
+        $day = $key_d+1;
+        echo "<tr>";
+        echo "<td style=\"width: 75px; height: 75px; border: 1px solid #000000; text-align: center;>\" <br> ";
+        echo $day . "<br>" . $val_w . "<br><br></td>";
+        echo str_repeat("<td style=\"width: 75px; height: 75px; border: 1px solid #000000; text-align: center;>\"> </td>", $count)  . '</tr>';
 }
 
 
