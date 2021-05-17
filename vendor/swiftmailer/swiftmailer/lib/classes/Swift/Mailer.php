@@ -54,7 +54,6 @@ class Swift_Mailer
         return Swift_DependencyContainer::getInstance()
             ->lookup('message.'.$service);
     }
-
     /**
      * Send the given Message like it would be sent in a mail client.
      *

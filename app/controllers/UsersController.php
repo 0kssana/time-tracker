@@ -1,5 +1,20 @@
 <?php
 
+/*
+  +------------------------------------------------------------------------+
+  | Vökuró                                                                 |
+  +------------------------------------------------------------------------+
+  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
+  +------------------------------------------------------------------------+
+  | This source file is subject to the New BSD License that is bundled     |
+  | with this package in the file LICENSE.txt.                             |
+  |                                                                        |
+  | If you did not receive a copy of the license and are unable to         |
+  | obtain it through the world-wide-web, please send an email             |
+  | to license@phalconphp.com so we can send you a copy immediately.       |
+  +------------------------------------------------------------------------+
+*/
+
 namespace Timetracker\Controllers;
 
 use Phalcon\Tag;
@@ -10,7 +25,11 @@ use Timetracker\Models\PasswordChanges;
 use Timetracker\Forms\ChangePasswordForm;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
-
+/**
+ * CRUD to manage users
+ * Timetracker\Controllers\UsersController
+ * @package Timetracker\Controllers
+ */
 class UsersController extends ControllerBase
 {
     public function initialize()
@@ -25,15 +44,6 @@ class UsersController extends ControllerBase
     {
         $this->persistent->conditions = null;
         $this->view->form = new UsersForm();
-
-
-//        $time = Users::find();
-//        $this->view->setVars(
-//            [
-//                'users' => $time
-//            ]
-//        );
-
     }
 
     /**
@@ -99,12 +109,12 @@ class UsersController extends ControllerBase
                 }
             }
         }
-
+        
         $this->view->form = $form;
     }
 
     /**
-     * Saves the users from the 'edit' action
+     * Saves the user from the 'edit' action
      */
     public function editAction($id)
     {
@@ -113,7 +123,7 @@ class UsersController extends ControllerBase
         if (!$user) {
             $this->flash->error("User was not found");
             return $this->dispatcher->forward([
-                'action' => 'index'
+                        'action' => 'index'
             ]);
         }
 
@@ -214,8 +224,4 @@ class UsersController extends ControllerBase
 
         $this->view->form = $form;
     }
-
-
-
-
 }

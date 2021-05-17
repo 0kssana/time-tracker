@@ -1,21 +1,31 @@
 <?php
-
-use Phalcon\Mvc\Router;
 use Phalcon\Mvc\View;
-use Phalcon\Mvc\View\Engine\Php as PhpEngine;
+use Phalcon\Crypt;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\Url as UrlResolver;
+use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
+use Phalcon\Mvc\Model\Metadata\Files as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
-use Phalcon\Mvc\Dispatcher;
+use Phalcon\Logger\Adapter\File as FileLogger;
+use Phalcon\Logger\Formatter\Line as FormatterLine;
 use Timetracker\Auth\Auth;
+use Timetracker\Acl\Acl;
+use Timetracker\Mail\Mail;
 
 /**
- * Shared configuration service
+ * Register the global configuration as config
  */
 $di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
+    $config = include APP_PATH . '/config/config.php';
+    
+    if (is_readable(APP_PATH . '/config/config.dev.php')) {
+        $override = include APP_PATH . '/config/config.dev.php';
+        $config->merge($override);
+    }
+    
+    return $config;
 });
 
 /**
@@ -26,18 +36,17 @@ $di->setShared('url', function () {
 
     $url = new UrlResolver();
     $url->setBaseUri($config->application->baseUri);
-
     return $url;
 });
 
 /**
  * Setting up the view component
  */
-$di->setShared('view', function () {
+$di->set('view', function () {
     $config = $this->getConfig();
 
     $view = new View();
-    $view->setDI($this);
+
     $view->setViewsDir($config->application->viewsDir);
 
     $view->registerEngines([
@@ -47,83 +56,58 @@ $di->setShared('view', function () {
             $volt = new VoltEngine($view, $this);
 
             $volt->setOptions([
-                'compiledPath' => $config->application->cacheDir,
+                'compiledPath' => $config->application->cacheDir . 'volt/',
                 'compiledSeparator' => '_'
             ]);
 
             return $volt;
-        },
-        '.phtml' => PhpEngine::class
-
+        }
     ]);
 
     return $view;
-});
+}, true);
 
 /**
  * Database connection is created based in the parameters defined in the configuration file
  */
-$di->setShared('db', function () {
+$di->set('db', function () {
     $config = $this->getConfig();
-
-    $class = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
-    $params = [
-        'host'     => $config->database->host,
+    return new DbAdapter([
+        'host' => $config->database->host,
         'username' => $config->database->username,
         'password' => $config->database->password,
-        'dbname'   => $config->database->dbname,
-        'charset'  => $config->database->charset
-    ];
-
-    if ($config->database->adapter == 'Postgresql') {
-        unset($params['charset']);
-    }
-
-    $connection = new $class($params);
-
-    return $connection;
+        'dbname' => $config->database->dbname
+    ]);
 });
-
 
 /**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
-$di->setShared('modelsMetadata', function () {
-    return new MetaDataAdapter();
-});
-
-/**
- * Register the session flash service with the Twitter Bootstrap classes
- */
-$di->set('flash', function () {
-    return new Flash([
-        'error'   => 'alert alert-danger',
-        'success' => 'alert alert-success',
-        'notice'  => 'alert alert-info',
-        'warning' => 'alert alert-warning'
+$di->set('modelsMetadata', function () {
+    $config = $this->getConfig();
+    return new MetaDataAdapter([
+        'metaDataDir' => $config->application->cacheDir . 'metaData/'
     ]);
 });
 
 /**
  * Start the session the first time some component request the session service
  */
-$di->setShared('session', function () {
+$di->set('session', function () {
     $session = new SessionAdapter();
     $session->start();
-
     return $session;
 });
 
 /**
- * Register router
+ * Crypt service
  */
-$di->setShared('router', function () {
-    $router = new Router();
-    $router->setUriSource(
-        Router::URI_SOURCE_SERVER_REQUEST_URI
-    );
+$di->set('crypt', function () {
+    $config = $this->getConfig();
 
-    return $router;
+    $crypt = new Crypt();
+    $crypt->setKey($config->application->cryptSalt);
+    return $crypt;
 });
 
 /**
@@ -136,9 +120,75 @@ $di->set('dispatcher', function () {
 });
 
 /**
+ * Loading routes from the routes.php file
+ */
+$di->set('router', function () {
+    return require APP_PATH . '/config/routes.php';
+});
+
+/**
+ * Flash service with custom CSS classes
+ */
+$di->set('flash', function () {
+    return new Flash([
+        'error' => 'alert alert-danger',
+        'success' => 'alert alert-success',
+        'notice' => 'alert alert-info',
+        'warning' => 'alert alert-warning'
+    ]);
+});
+
+/**
  * Custom authentication component
  */
 $di->set('auth', function () {
     return new Auth();
 });
 
+/**
+ * Mail service uses AmazonSES
+ */
+$di->set('mail', function () {
+    return new Mail();
+});
+
+/**
+ * Setup the private resources, if any, for performance optimization of the ACL.  
+ */
+$di->setShared('AclResources', function() {
+    $pr = [];
+    if (is_readable(APP_PATH . '/config/privateResources.php')) {
+        $pr = include APP_PATH . '/config/privateResources.php';
+    }
+    return $pr;
+});
+
+/**
+ * Access Control List
+ * Reads privateResource as an array from the config object.
+ */
+$di->set('acl', function () {
+    $acl = new Acl();
+    $pr = $this->getShared('AclResources')->privateResources->toArray();
+    $acl->addPrivateResources($pr);
+    return $acl;
+});
+
+/**
+ * Logger service
+ */
+$di->set('logger', function ($filename = null, $format = null) {
+    $config = $this->getConfig();
+
+    $format   = $format ?: $config->get('logger')->format;
+    $filename = trim($filename ?: $config->get('logger')->filename, '\\/');
+    $path     = rtrim($config->get('logger')->path, '\\/') . DIRECTORY_SEPARATOR;
+
+    $formatter = new FormatterLine($format, $config->get('logger')->date);
+    $logger    = new FileLogger($path . $filename);
+
+    $logger->setFormatter($formatter);
+    $logger->setLogLevel($config->get('logger')->logLevel);
+
+    return $logger;
+});

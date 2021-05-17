@@ -1,32 +1,39 @@
-<div class="page-header">
-    <h1>Congratulations!</h1>
+{{ content() }}
+
+<div class="jumbotron" id="overview">
+    <div class="container-fluid">
+        <h1 class="display-3">Welcome!</h1>
+        <p class="lead">This is a website where you can track your working hours</p>
+      
+        <div align="right">
+        {%- if logged_in is empty -%}
+            {{ link_to(
+                    'session/login',
+                    '<span class="oi oi-check" aria-hidden="true"></span> Go to my workspace',
+                    'class': 'btn btn-primary btn-lg'
+                )
+            }}
+        {% else %}
+            {{ link_to(
+                    'tracker',
+                    '<span class="oi oi-clock" aria-hidden="true"></span> Enter Time Tracker',
+                    'class': 'btn btn-primary btn-lg'
+                )
+            }}
+        {% endif %}
+        </div>
+    </div>
 </div>
 
-<p>You're now flying with Phalcon. Great things are about to happen!</p>
+<!-- <div class="container">
 
-<p>This page is located at <code>views/index/index.phtml</code></p>
-
-
-
-    {{ partial('partials/calendar') }}
-
-
-
-
-<!--
-    <h2>Click</h2>
-    <form action="" method="POST">
-        <button name="click" class="click">Click me!</button>
-    </form>
-
-    <?php
-    if(isset($_POST['click']))
-    {
-        date_default_timezone_set('Asia/Bishkek');
-
-        $date_clicked = date('Y-m-d H:i:s');;
-        echo "Time the button was clicked: " . $date_clicked . "<br>";
-    }
-    ?>
- -->
-
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <h3>CopyPaster Info</h3>
+            <address>
+                <strong>Timur Osmonov</strong><br>
+                <a href="mailto:#">osm10ov@gmail.com</a>
+            </address>
+        </div>
+    </div>
+</div> -->

@@ -1,9 +1,24 @@
 <?php
 
+/*
+  +------------------------------------------------------------------------+
+  | Vökuró                                                                 |
+  +------------------------------------------------------------------------+
+  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
+  +------------------------------------------------------------------------+
+  | This source file is subject to the New BSD License that is bundled     |
+  | with this package in the file LICENSE.txt.                             |
+  |                                                                        |
+  | If you did not receive a copy of the license and are unable to         |
+  | obtain it through the world-wide-web, please send an email             |
+  | to license@phalconphp.com so we can send you a copy immediately.       |
+  +------------------------------------------------------------------------+
+*/
+
 namespace Timetracker\Forms;
 
 use Phalcon\Forms\Form;
-use Vokuro\Models\Profiles;
+use Timetracker\Models\Profiles;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Email as EmailText;
 use Phalcon\Forms\Element\Hidden;
@@ -11,7 +26,10 @@ use Phalcon\Forms\Element\Select;
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\PresenceOf;
 
-
+/**
+ * Timetracker\Forms\UsersForm
+ * @package Timetracker\Forms
+ */
 class UsersForm extends Form
 {
 
@@ -27,8 +45,8 @@ class UsersForm extends Form
         $this->add($id);
 
         $name = new Text('name', [
-            // 'placeholder' => 'Name'
-        ]);
+           // 'placeholder' => 'Name'
+        ]);       
         $name->setLabel('Name');
         $name->addValidators([
             new PresenceOf([
@@ -38,8 +56,8 @@ class UsersForm extends Form
         $this->add($name);
 
         $email = new EmailText('email', [
-        ]);
-        $email->setLabel('Email');
+        ]);       
+        $email->setLabel('Email');  
         $email->addValidators([
             new PresenceOf([
                 'message' => 'The e-mail is required'
@@ -68,8 +86,8 @@ class UsersForm extends Form
         ]);
         $profilesId->setLabel('Profile');
         $this->add($profilesId);
-
-
+        
+        
         $banned = new Select('banned', [
             'Y' => 'Yes',
             'N' => 'No'
@@ -77,14 +95,14 @@ class UsersForm extends Form
         $banned->setLabel('Banned');
         $this->add($banned);
 
-
+        
         $suspended = new Select('suspended', [
             'Y' => 'Yes',
             'N' => 'No'
         ]);
         $suspended->setLabel('Suspended');
         $this->add($suspended);
-
+        
 
         $active = new Select('active', [
             'Y' => 'Yes',

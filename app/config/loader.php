@@ -15,23 +15,31 @@ $loader->registerNamespaces([
 ]);
 
 $loader->register();
+date_default_timezone_set('Asia/Bishkek');
 
 // Use composer autoloader to load vendor classes
 require_once BASE_PATH . '/vendor/autoload.php';
 
 
-
 if (!function_exists('print_arr')) {
-    function print_arr($var, $return = false)
+    function print_arr($var, $return = false, $special = true)
     {
         $type = gettype($var);
         $out = print_r($var, true);
-        $out = htmlspecialchars($out);
+        if ($special) {
+            $out = htmlspecialchars($out);
+        }
         $out = str_replace(' ', '&nbsp;', $out);
-        if ($type == 'boolean')
+        if ($type == 'boolean') {
             $content = $var ? 'true' : 'false';
-        else
+        } else {
             $content = nl2br($out);
+        }
+
+        $count = '';
+        if ($type == 'array') {
+            $count = ' (' . count($var) . ' items)';
+        }
         $out = '<div style="
        border:2px inset #666;
        background:black;
@@ -40,19 +48,19 @@ if (!function_exists('print_arr')) {
        color:#6F6;
        text-align:left;
        margin:20px;
+       word-break: break-word;
        padding:16px">
-         <span style="color: #F66">(' . $type . ')</span> ' . $content . '</div><br /><br />';
+         <span style="color: #F66">(' . $type . ')</span>' . $count . ' ' . $content . '</div><br /><br />';
         if (!$return)
             echo $out;
         else
             return $out;
     }
+    function print_die($var, $return = false, $special = true)
+    {
+        print_arr($var, $return, $special);
+        $info = debug_backtrace();
+        print_arr("File: {$info[0]['file']} Line: {$info[0]['line']}");
+        die ();
+    }
 }
-function print_die($var, $return = false)
-{
-    print_arr($var, $return);
-    $info = debug_backtrace();
-    print_arr("File: {$info[0]['file']} Line: {$info[0]['line']}");
-    die ();
-}
-

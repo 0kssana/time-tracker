@@ -6,10 +6,18 @@ use Phalcon\Mvc\Model;
 
 class Tracker extends Model
 {
+//    public static function findFirst($string)
+//    {
+//    }
+
     public function initialize()
     {
-        $this->setSchema("timetracker");
-        $this->setSource('time');
-        $this->belongsTo('id', 'Users', 'user_id');
+        $this->setSchema("time");
+        $this->setSource('time_data');
     }
+
+    public function setSchema($string)
+    {
+    }
+
 }

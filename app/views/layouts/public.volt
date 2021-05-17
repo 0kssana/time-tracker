@@ -1,4 +1,28 @@
+<nav id="topNav" class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" area-expanded="false" aria-label="Toggle Navigation">
+        <span class="oi oi-menu" title="MENU" aria-hidden="true"></span>
+    </button>
 
+
+    <div class="collapse navbar-collapse" id="nav-content">  
+        <ul class="navbar-nav">
+
+            {%- set menus = [
+                  'Home': 'index'
+                ] -%}
+
+            {%- for key, value in menus %}
+            {% if value == dispatcher.getControllerName() %}
+                <li class="active nav-item">{{ link_to(value, key, 'class':'nav-link') }}</li>
+                {% else %}
+                <li>{{ link_to(value, key, 'class':'nav-link') }}</li>
+                {% endif %}
+                {%- endfor -%}
+
+        </ul>
+    </div> <!-- navbar-collapse -->
+    
+    {{ link_to(null, 'class': 'navbar-brand', 'Time Tracker')}}
     
     <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#nav-content-secondary" aria-controls="nav-content-secondary" area-expanded="false" aria-label="Toggle Navigation Secondary" >
         <span class="oi oi-person" title="person" aria-hidden="true"></span>
@@ -16,7 +40,7 @@
         </div>
  </nav>
 
- <main role="main" class="container mt-4">
+<main role="main" class="container mt-4">
             {{ content() }}
 </main>
 <!--

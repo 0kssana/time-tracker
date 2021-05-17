@@ -1,5 +1,20 @@
 <?php
 
+/*
+  +------------------------------------------------------------------------+
+  | Vökuró                                                                 |
+  +------------------------------------------------------------------------+
+  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
+  +------------------------------------------------------------------------+
+  | This source file is subject to the New BSD License that is bundled     |
+  | with this package in the file LICENSE.txt.                             |
+  |                                                                        |
+  | If you did not receive a copy of the license and are unable to         |
+  | obtain it through the world-wide-web, please send an email             |
+  | to license@phalconphp.com so we can send you a copy immediately.       |
+  +------------------------------------------------------------------------+
+*/
+
 namespace Timetracker\Forms;
 
 use Phalcon\Forms\Form;
@@ -36,20 +51,6 @@ class SignUpForm extends Form
 
         $this->add($name);
 
-        // Login
-
-        $login = new Text('login');
-
-        $login->setLabel('Login');
-
-        $login->addValidators([
-            new PresenceOf([
-                'message' => 'The login is required'
-            ]),
-        ]);
-
-        $this->add($login);
-
         // Email
         $email = new EmailText('email');
 
@@ -65,34 +66,6 @@ class SignUpForm extends Form
         ]);
 
         $this->add($email);
-
-        // Role
-
-        $role = new Text('role');
-
-        $role->setLabel('Role');
-
-        $role->addValidators([
-            new PresenceOf([
-                'message' => 'The role is required'
-            ]),
-        ]);
-
-        $this->add($role);
-
-        // Status
-
-        $status = new Text('status');
-
-        $status->setLabel('Status');
-
-//        $status->addValidators([
-//            new PresenceOf([
-//                'message' => 'The status is required'
-//            ]),
-//        ]);
-
-        $this->add($status);
 
         // Password
         $password = new Password('password');
@@ -127,20 +100,20 @@ class SignUpForm extends Form
         ]);
 
         $this->add($confirmPassword);
-//
-//        // Remember
-//        $terms = new Check('terms', [
-//            'value' => 'yes'
-//        ]);
-//
-//        $terms->setLabel('Accept terms and conditions');
-//
-//        $terms->addValidator(new Identical([
-//            'value' => 'yes',
-//            'message' => 'Terms and conditions must be accepted'
-//        ]));
-//
-//        $this->add($terms);
+
+        // Remember
+        $terms = new Check('terms', [
+            'value' => 'yes'
+        ]);
+
+        $terms->setLabel('Accept terms and conditions');
+
+        $terms->addValidator(new Identical([
+            'value' => 'yes',
+            'message' => 'Terms and conditions must be accepted'
+        ]));
+
+        $this->add($terms);
 
         // CSRF
         $csrf = new Hidden('csrf');

@@ -23,7 +23,10 @@ use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\StringLength;
 use Phalcon\Validation\Validator\Confirmation;
 
-
+/**
+ * Timetracker\Forms\ChangePasswordForm
+ * @package Timetracker\Forms
+ */
 class ChangePasswordForm extends Form
 {
 
@@ -33,7 +36,7 @@ class ChangePasswordForm extends Form
         $password = new Password('password');
 
         $password->setLabel('Password');
-
+        
         $password->addValidators([
             new PresenceOf([
                 'message' => 'Password is required'
@@ -52,7 +55,7 @@ class ChangePasswordForm extends Form
 
         // Confirm Password
         $confirmPassword = new Password('confirmPassword');
-
+        
         $confirmPassword->setLabel('Confirm Password');
 
         $confirmPassword->addValidators([

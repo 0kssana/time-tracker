@@ -1,5 +1,20 @@
 <?php
 
+/*
+  +------------------------------------------------------------------------+
+  | Vökuró                                                                 |
+  +------------------------------------------------------------------------+
+  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
+  +------------------------------------------------------------------------+
+  | This source file is subject to the New BSD License that is bundled     |
+  | with this package in the file LICENSE.txt.                             |
+  |                                                                        |
+  | If you did not receive a copy of the license and are unable to         |
+  | obtain it through the world-wide-web, please send an email             |
+  | to license@phalconphp.com so we can send you a copy immediately.       |
+  +------------------------------------------------------------------------+
+*/
+
 namespace Timetracker\Auth;
 
 use Timetracker\Models\Users;
@@ -17,7 +32,7 @@ use Timetracker\Models\RememberTokens;
 class Auth extends Component
 {
     /**
-     * Checks the users credentials
+     * Checks the user credentials
      *
      * @param array $credentials
      * @return boolean
@@ -25,7 +40,7 @@ class Auth extends Component
      */
     public function check($credentials)
     {
-        // Check if the users exist
+        // Check if the user exist
         $user = Users::findFirstByEmail($credentials['email']);
         if ($user == false) {
             $this->registerUserThrottling(0);
@@ -38,7 +53,7 @@ class Auth extends Component
             throw new Exception('Wrong email/password combination');
         }
 
-        // Check if the users was flagged
+        // Check if the user was flagged
         $this->checkUserFlags($user);
 
         // Register the successful login
@@ -169,7 +184,7 @@ class Auth extends Component
                 if ($remember) {
                     // Check if the cookie has not expired
                     if ((time() - (86400 * 8)) < $remember->createdAt) {
-                        // Check if the users was flagged
+                        // Check if the user was flagged
                         $this->checkUserFlags($user);
 
                         // Register identity
@@ -195,7 +210,7 @@ class Auth extends Component
     }
 
     /**
-     * Checks if the users is banned/inactive/suspended
+     * Checks if the user is banned/inactive/suspended
      *
      * @param \Timetracker\Models\Users $user
      * @throws Exception
@@ -203,15 +218,15 @@ class Auth extends Component
     public function checkUserFlags(Users $user)
     {
         if ($user->active != 'Y') {
-            throw new Exception('The users is inactive');
+            throw new Exception('The user is inactive');
         }
 
         if ($user->banned != 'N') {
-            throw new Exception('The users is banned');
+            throw new Exception('The user is banned');
         }
 
         if ($user->suspended != 'N') {
-            throw new Exception('The users is suspended');
+            throw new Exception('The user is suspended');
         }
     }
 
@@ -237,7 +252,7 @@ class Auth extends Component
     }
 
     /**
-     * Removes the users identity information from session
+     * Removes the user identity information from session
      */
     public function remove()
     {
@@ -259,7 +274,7 @@ class Auth extends Component
     }
 
     /**
-     * Auths the users by his/her id
+     * Auths the user by his/her id
      *
      * @param int $id
      * @throws Exception
@@ -268,11 +283,10 @@ class Auth extends Component
     {
         $user = Users::findFirstById($id);
         if ($user == false) {
-            throw new Exception('The users does not exist');
+            throw new Exception('The user does not exist');
         }
 
         $this->checkUserFlags($user);
-
         $this->session->set('auth-identity', [
             'id' => $user->id,
             'name' => $user->name,
@@ -281,7 +295,7 @@ class Auth extends Component
     }
 
     /**
-     * Get the entity related to users in the active identity
+     * Get the entity related to user in the active identity
      *
      * @return \Timetracker\Models\Users
      * @throws Exception
@@ -292,17 +306,18 @@ class Auth extends Component
         if (isset($identity['id'])) {
             $user = Users::findFirstById($identity['id']);
             if ($user == false) {
-                throw new Exception('The users does not exist');
+                throw new Exception('The user does not exist');
             }
 
             return $user;
         }
 
+
         return false;
     }
     
     /**
-     * Returns the current token users
+     * Returns the current token user
      *
      * @param string $token
      * @return boolean
@@ -321,7 +336,7 @@ class Auth extends Component
     }
 
     /**
-     * Delete the current users token in session
+     * Delete the current user token in session
      */
     public function deleteToken($userId) 
     {

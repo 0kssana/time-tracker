@@ -24,7 +24,7 @@
             </ul>
         </div> <!-- navbar-collapse -->
         
-        {{ link_to(null, 'class': 'navbar-brand', 'Vökuró')}}
+        {{ link_to(null, 'class': 'navbar-brand', 'Time Tracker')}}
         
         <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#nav-content-secondary" aria-controls="nav-content-secondary" area-expanded="false" aria-label="Toggle Navigation Secondary">
         <span class="oi oi-person" title="person" aria-hidden="true"></span>
@@ -48,6 +48,6 @@
         <main role="main" class="container mt-4">           
             {{ content() }}            
         </main>
-<!--
- {# our common footer #}
+
+ <!-- {# our common footer #}
 {% include 'partials/footer.volt' %} -->

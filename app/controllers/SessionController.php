@@ -1,5 +1,20 @@
 <?php
 
+/*
+  +------------------------------------------------------------------------+
+  | Vökuró                                                                 |
+  +------------------------------------------------------------------------+
+  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
+  +------------------------------------------------------------------------+
+  | This source file is subject to the New BSD License that is bundled     |
+  | with this package in the file LICENSE.txt.                             |
+  |                                                                        |
+  | If you did not receive a copy of the license and are unable to         |
+  | obtain it through the world-wide-web, please send an email             |
+  | to license@phalconphp.com so we can send you a copy immediately.       |
+  +------------------------------------------------------------------------+
+*/
+
 namespace Timetracker\Controllers;
 
 use Timetracker\Models\Users;
@@ -7,10 +22,10 @@ use Timetracker\Forms\LoginForm;
 use Timetracker\Forms\SignUpForm;
 use Timetracker\Exception\Exception;
 use Timetracker\Models\ResetPasswords;
-
+use Timetracker\Forms\ForgotPasswordForm;
 
 /**
- * Controller used handle non-authenticated session actions like login/logout, users signup, and forgotten passwords
+ * Controller used handle non-authenticated session actions like login/logout, user signup, and forgotten passwords
  * Timetracker\Controllers\SessionController
  * @package Timetracker\Controllers
  */
@@ -29,7 +44,7 @@ class SessionController extends ControllerBase
     }
 
     /**
-     * Allow a users to signup to the system
+     * Allow a user to signup to the system
      */
     public function signupAction()
     {
@@ -39,10 +54,7 @@ class SessionController extends ControllerBase
             if ($form->isValid($this->request->getPost()) != false) {
                 $user = new Users([
                     'name' => $this->request->getPost('name', 'striptags'),
-                    'login' => $this->request->getPost('login'),
                     'email' => $this->request->getPost('email'),
-                    'role' => $this->request->getPost('role'),
-                    'status' => $this->request->getPost('status'),
                     'password' => $this->security->hash($this->request->getPost('password')),
                     'profilesId' => 2
                 ]);
@@ -68,6 +80,7 @@ class SessionController extends ControllerBase
     {
         $form = new LoginForm();
 
+
         try {
             if (!$this->request->isPost()) {
                 if ($this->auth->hasRememberMe()) {
@@ -84,6 +97,9 @@ class SessionController extends ControllerBase
                         'password' => $this->request->getPost('password'),
                         'remember' => $this->request->getPost('remember')
                     ]);
+                    $id = 5;
+                    $this->session->set('id', $id);
+
 
                     return $this->response->redirect('users');
                 }
@@ -95,6 +111,45 @@ class SessionController extends ControllerBase
         $this->view->form = $form;
     }
 
+    /**
+     * Shows the forgot password form
+     */
+    public function forgotPasswordAction()
+    {
+        $form = new ForgotPasswordForm();
+
+        if ($this->request->isPost()) {
+            // Send emails only is config value is set to true
+            if ($this->getDI()->get('config')->useMail) {
+                if ($form->isValid($this->request->getPost()) == false) {
+                    foreach ($form->getMessages() as $message) {
+                        $this->flash->error($message);
+                    }
+                } else {
+                    $user = Users::findFirstByEmail($this->request->getPost('email'));
+                    if (!$user) {
+                        $this->flash->success('There is no account associated to this email');
+                    } else {
+                        $resetPassword = new ResetPasswords();
+                        $resetPassword->usersId = $user->id;
+                        if ($resetPassword->save()) {
+                            $this->flash->success('Success! Please check your messages for an email reset password');
+                        } else {
+                            foreach ($resetPassword->getMessages() as $message) {
+                                $this->flash->error($message);
+                            }
+                        }
+                    }
+                }
+            } else {
+                $this->flash->warning(
+                    'Emails are currently disabled. Change config key "useMail" to true to enable emails.'
+                );
+            }
+        }
+
+        $this->view->form = $form;
+    }
 
     /**
      * Closes the session
@@ -104,9 +159,5 @@ class SessionController extends ControllerBase
         $this->auth->remove();
 
         return $this->response->redirect('index');
-    }
-
-    public function homeAction(){
-
     }
 }

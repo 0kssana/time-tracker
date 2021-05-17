@@ -1,5 +1,20 @@
 <?php
 
+/*
+  +------------------------------------------------------------------------+
+  | Vökuró                                                                 |
+  +------------------------------------------------------------------------+
+  | Copyright (c) 2016-present Phalcon Team (https://www.phalconphp.com)   |
+  +------------------------------------------------------------------------+
+  | This source file is subject to the New BSD License that is bundled     |
+  | with this package in the file LICENSE.txt.                             |
+  |                                                                        |
+  | If you did not receive a copy of the license and are unable to         |
+  | obtain it through the world-wide-web, please send an email             |
+  | to license@phalconphp.com so we can send you a copy immediately.       |
+  +------------------------------------------------------------------------+
+*/
+
 namespace Timetracker\Forms;
 
 use Phalcon\Forms\Form;
@@ -12,6 +27,10 @@ use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\Identical;
 
+/**
+ * Timetracker\Forms\LoginForm
+ * @package Timetracker\Forms
+ */
 
 class LoginForm extends Form
 {
@@ -24,7 +43,7 @@ class LoginForm extends Form
             'required' => 'required'
         ]);
         $email->setLabel('Email');
-
+        
         $email->addValidators([
             new PresenceOf([
                 'message' => 'The e-mail is required'
@@ -55,9 +74,9 @@ class LoginForm extends Form
         $remember = new Check('remember', [
             'value' => 'yes'
         ]);
-
+        
         $remember->setLabel('Remember me');
-
+        
         $this->add($remember);
 
         // CSRF
@@ -71,7 +90,7 @@ class LoginForm extends Form
         $csrf->clear();
 
         $this->add($csrf);
-
+       
         $this->add(new Submit('go',[
             'value' => "Sign in"
         ]));
