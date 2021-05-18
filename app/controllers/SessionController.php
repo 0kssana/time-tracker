@@ -53,7 +53,7 @@ class SessionController extends ControllerBase
         if ($this->request->isPost()) {
             if ($form->isValid($this->request->getPost()) != false) {
                 $user = new Users([
-                    'name' => $this->request->getPost('name', 'striptags'),
+                    'name' => $this->request->getPost('name'),
                     'email' => $this->request->getPost('email'),
                     'password' => $this->security->hash($this->request->getPost('password')),
                     'profilesId' => 2
@@ -66,16 +66,16 @@ class SessionController extends ControllerBase
                     ]);
                 }
 
-                $this->flash->error($user->getMessages());
+//                $this->flash->error($user->getMessages());
             }
         }
 
         $this->view->form = $form;
     }
 
-    /**
-     * Starts a session in the admin backend
-     */
+
+
+
     public function loginAction()
     {
         $form = new LoginForm();
@@ -96,12 +96,12 @@ class SessionController extends ControllerBase
                         'email' => $this->request->getPost('email'),
                         'password' => $this->request->getPost('password'),
                         'remember' => $this->request->getPost('remember')
+
                     ]);
-                    $id = 5;
-                    $this->session->set('id', $id);
 
 
-                    return $this->response->redirect('users');
+
+                    return $this->response->redirect('/');
                 }
             }
         } catch (Exception $e) {

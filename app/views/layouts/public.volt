@@ -8,7 +8,8 @@
         <ul class="navbar-nav">
 
             {%- set menus = [
-                  'Home': 'index'
+                  'Home': 'index',
+                  'About': 'about'
                 ] -%}
 
             {%- for key, value in menus %}
@@ -43,7 +44,5 @@
 <main role="main" class="container mt-4">
             {{ content() }}
 </main>
-<!--
 {# our common footer #}
 {% include 'partials/footer.volt' %}
--->

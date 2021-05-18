@@ -149,9 +149,9 @@ final class Partition implements ArrayAccess, PartitionInterface
 
     private function getEndpointData($service, $region, $options)
     {
-        $defaultRegion = $this->resolveRegion($service, $region, $options);
-        $data = isset($this->data['services'][$service]['endpoints'][$defaultRegion])
-            ? $this->data['services'][$service]['endpoints'][$defaultRegion]
+        $resolved = $this->resolveRegion($service, $region, $options);
+        $data = isset($this->data['services'][$service]['endpoints'][$resolved])
+            ? $this->data['services'][$service]['endpoints'][$resolved]
             : [];
         $data += isset($this->data['services'][$service]['defaults'])
             ? $this->data['services'][$service]['defaults']
@@ -183,12 +183,6 @@ final class Partition implements ArrayAccess, PartitionInterface
 
     private function resolveRegion($service, $region, $options)
     {
-        if (isset($this->data['services'][$service]['endpoints'][$region])
-            && $this->isFipsEndpointUsed($region)
-        ) {
-            return $region;
-        }
-
         if ($this->isServicePartitionGlobal($service)
             || $this->isStsLegacyEndpointUsed($service, $region, $options)
             || $this->isS3LegacyEndpointUsed($service, $region, $options)
@@ -258,14 +252,5 @@ final class Partition implements ArrayAccess, PartitionInterface
             '{region}' => $region,
             '{dnsSuffix}' => $this->data['dnsSuffix'],
         ]);
-    }
-
-    /**
-     * @param $region
-     * @return bool
-     */
-    private function isFipsEndpointUsed($region)
-    {
-        return strpos($region, "fips") !== false;
     }
 }

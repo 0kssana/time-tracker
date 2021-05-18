@@ -1,12 +1,12 @@
 {{ content() }}
 
-<!-- <?php //$this->assets->outputJs() ?> -->
-
-<input id="id" type="hidden" name="id" value="" />
-<input id="timerbutton"  class="mk" type="button" name="timerbutton" value="start" />
-<!-- <input id="test"  class="mk" type="button" name="timerbutton" value="test" /> -->
-<table id="timertable">
-
+<div class="col-md-9">
+    <div class="col-xl-6  mb-4 mt-4">
+<!--         <input id="id" type="hidden" name="id" value="" /> -->
+        <input id="timerbutton" class="mk" type="button" name="timerbutton" value="start" />
+        <table id="timertable">
+    </div>
+</div>
 </table>
 
 
@@ -29,7 +29,7 @@
         {
             $(this).prop('value', 'start');
         }
-//     console.log(state);
+
         $.ajax(
         {
             type: "POST",
@@ -42,17 +42,16 @@
 
             success: function(data)
             {
-//     console.log(data);
-        $("#timertable").empty();
 
-//         console.log(data);
-        $.each(data, function(index, value)
-        {
-            console.log( "start time" + ": " + value['start_time']);
-            console.log( "end time" + ": " + value['end_time']);
-            $("#timertable").append("<tr><td>"+value['start_time']+" <> </td><td>"+value['end_time'] +"</td></tr>");
-        });
-        }
+                $("#timertable").empty();
+
+                $.each(data, function(index, value)
+                {
+                    console.log( "start time" + ": " + value['start_time']);
+                    console.log( "end time" + ": " + value['end_time']);
+                    $("#timertable").append("<tr><td>"+value['start_time']+" <> </td><td>"+value['end_time'] +"</td></tr>");
+                });
+            }
         });
     });
 </script>

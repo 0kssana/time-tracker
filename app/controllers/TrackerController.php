@@ -15,7 +15,11 @@ class TrackerController extends ControllerBase
 
     public function testAction()
     {
-
+        $user_id = '';
+        if ($this->session->has('id')) {
+            // Получение значения
+            $user_id = $this->session->get('id');
+        }
 
         $state = "";
         if (isset($_POST['state'])) {
@@ -28,6 +32,7 @@ class TrackerController extends ControllerBase
             $time = new Tracker();
             $time->start_time = $time_now;
             $time->state = $state;
+            $time->user_id = $user_id;
             $time->save();
         } else if ($state == "stop")
         {

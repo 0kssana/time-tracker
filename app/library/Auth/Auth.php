@@ -87,6 +87,8 @@ class Auth extends Component
             $messages = $successLogin->getMessages();
             throw new Exception($messages[0]);
         }
+        $id = $user->id;
+        $this->session->set('id', $id);
     }
 
     /**

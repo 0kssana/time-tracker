@@ -334,7 +334,7 @@ class EndpointArnMiddleware
         $this->validateMatchingRegion($arn);
 
         // Ensure it is not resolved to fips pseudo-region for S3 Outposts
-        $this->validateFipsConfigurations($arn);
+        $this->validateFipsNotUsedWithOutposts($arn);
 
         return $arnPart;
     }

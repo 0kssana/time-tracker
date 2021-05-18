@@ -75,7 +75,7 @@ trait EndpointRegionHelperTrait
         return str_replace(['fips-', '-fips'], ['', ''], $region);
     }
 
-    private function validateFipsConfigurations(ArnInterface $arn)
+    private function validateFipsNotUsedWithOutposts(ArnInterface $arn)
     {
         if ($arn instanceof OutpostsArnInterface) {
             if (empty($this->config['use_arn_region'])
@@ -92,14 +92,6 @@ trait EndpointRegionHelperTrait
                     . ' points. Please provide a non-fips region or do not supply an'
                     . ' access point ARN.');
             }
-        }
-        if ($this->isFipsPseudoRegion($this->region)
-            && $this->stripPseudoRegions($this->region) != $arn->getRegion()
-        ) {
-            throw new InvalidRegionException(
-                'Fips is currently not supported with cross region'
-                . ' requests. Please provide a non-fips region or supply a matching'
-                . ' access point ARN region and client region.');
         }
     }
 

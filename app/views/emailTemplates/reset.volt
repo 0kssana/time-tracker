@@ -15,7 +15,7 @@
 
 				<br>
 				<br>
-				Vökuró!. Enjoy!
+				Time Tracker!. Enjoy!
 				<br>
 			</p>
 		</td>

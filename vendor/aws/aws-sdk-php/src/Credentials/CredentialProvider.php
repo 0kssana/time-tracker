@@ -328,11 +328,11 @@ class CredentialProvider
             if (!is_readable($filename)) {
                 return self::reject("Cannot read credentials from $filename");
             }
-            $profiles = self::loadProfiles($filename);
-            if (!isset($profiles[$ssoProfileName])) {
+            $data = self::loadProfiles($filename);
+            if (empty($data[$ssoProfileName])) {
                 return self::reject("Profile {$ssoProfileName} does not exist in {$filename}.");
             }
-            $ssoProfile = $profiles[$ssoProfileName];
+            $ssoProfile = $data[$ssoProfileName];
             if (empty($ssoProfile['sso_start_url'])
                 || empty($ssoProfile['sso_region'])
                 || empty($ssoProfile['sso_account_id'])

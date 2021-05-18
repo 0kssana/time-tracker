@@ -25,6 +25,10 @@ use Phalcon\Forms\Element\Hidden;
 use Phalcon\Forms\Element\Select;
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Forms\Element\Password;
+use Phalcon\Validation\Validator\StringLength;
+use Phalcon\Validation\Validator\Confirmation;
+
 
 /**
  * Timetracker\Forms\UsersForm
@@ -45,8 +49,8 @@ class UsersForm extends Form
         $this->add($id);
 
         $name = new Text('name', [
-            // 'placeholder' => 'Name'
-        ]);
+           // 'placeholder' => 'Name'
+        ]);       
         $name->setLabel('Name');
         $name->addValidators([
             new PresenceOf([
@@ -56,8 +60,8 @@ class UsersForm extends Form
         $this->add($name);
 
         $email = new EmailText('email', [
-        ]);
-        $email->setLabel('Email');
+        ]);       
+        $email->setLabel('Email');  
         $email->addValidators([
             new PresenceOf([
                 'message' => 'The e-mail is required'
@@ -67,6 +71,27 @@ class UsersForm extends Form
             ])
         ]);
         $this->add($email);
+
+        // Password
+        $password = new Password('password');
+
+        $password->setLabel('Password');
+
+        $password->addValidators([
+            new PresenceOf([
+                'message' => 'The password is required'
+            ]),
+            new StringLength([
+                'min' => 6,
+                'messageMinimum' => 'Password is too short. Minimum 6 characters'
+            ]),
+//            new Confirmation([
+//                'message' => 'Password doesn\'t match confirmation',
+//                'with' => 'confirmPassword'
+//            ])
+        ]);
+
+        $this->add($password);
 
         $profiles = Profiles::find([
             'active = :active:',
@@ -86,8 +111,8 @@ class UsersForm extends Form
         ]);
         $profilesId->setLabel('Profile');
         $this->add($profilesId);
-
-
+        
+        
         $banned = new Select('banned', [
             'Y' => 'Yes',
             'N' => 'No'
@@ -95,14 +120,14 @@ class UsersForm extends Form
         $banned->setLabel('Banned');
         $this->add($banned);
 
-
+        
         $suspended = new Select('suspended', [
             'Y' => 'Yes',
             'N' => 'No'
         ]);
         $suspended->setLabel('Suspended');
         $this->add($suspended);
-
+        
 
         $active = new Select('active', [
             'Y' => 'Yes',

@@ -77,8 +77,8 @@ class SignUpForm extends Form
                 'message' => 'The password is required'
             ]),
             new StringLength([
-                'min' => 8,
-                'messageMinimum' => 'Password is too short. Minimum 8 characters'
+                'min' => 6,
+                'messageMinimum' => 'Password is too short. Minimum 6 characters'
             ]),
             new Confirmation([
                 'message' => 'Password doesn\'t match confirmation',

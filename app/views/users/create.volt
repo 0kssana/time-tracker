@@ -28,15 +28,22 @@
                     {{ form.render('email' , ['class' : 'form-control ']) }}
                 </div>
             </div>
-                
+
             <div class="form-group row">
-                {{ form.label('profilesId', ['class' : 'col-md-3 col-form-label']) }}    
+                {{ form.label('password', ['class' : 'col-md-3 col-form-label']) }}
+                <div class="col-md-9">
+                    {{ form.render('password' , ['class' : 'form-control ']) }}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{ form.label('profilesId', ['class' : 'col-md-3 col-form-label']) }}
                 <div class="col-md-9">
                     {{ form.render('profilesId' , ['class' : 'form-control ']) }}
                 </div>
             </div>
+
             <div class="form-group row justify-content-end">
-                <div class="col-md-9" >
+                    <div class="col-md-9" >
                     {{ submit_button("Save", "class": "btn btn-success btn-block") }}
                 </div>
             </div>
