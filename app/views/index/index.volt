@@ -24,16 +24,3 @@
         </div>
     </div>
 </div>
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <h3>CopyPaster Info</h3>
-            <address>
-                <strong>Timur Osmonov</strong><br>
-                <a href="mailto:#">osm10ov@gmail.com</a>
-            </address>
-        </div>
-    </div>
-</div>

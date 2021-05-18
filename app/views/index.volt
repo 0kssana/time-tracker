@@ -19,4 +19,7 @@
                 {{ javascript_include('js/jquery-3.3.1.min.js') }}
                 {{ javascript_include('js/bootstrap.bundle.min.js') }}
 	</body>
+	<footer>
+	          {{ partial('partials/footer') }}
+	 </footer>
 </html>

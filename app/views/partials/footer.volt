@@ -6,11 +6,10 @@
                 Made through overcoming pain and despair by TO
             </div>
             <div class="col-md-4">
-                {{ link_to("privacy", "Privacy Policy") }}
-                {{ link_to("terms", "Terms") }}
+                0kssana.sdm@gmail.com
             </div>
             <div class="col-md-4">
-                 &copy; {{ date("Y") }} Timur Osmonov.
+                 &copy; {{ date("Y") }} Growave 2021.
             </div>
     </div>
 </footer>

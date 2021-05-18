@@ -49,5 +49,5 @@
             {{ content() }}            
         </main>
 
- {# our common footer #}
-{% include 'partials/footer.volt' %}
+<!-- {# our common footer #}
+{% include 'partials/footer.volt' %} -->
