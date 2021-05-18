@@ -120,13 +120,15 @@ class UsersController extends ControllerBase
                 'email' => $this->request->getPost('email', 'email'),
                 'banned' => $this->request->getPost('banned'),
                 'suspended' => $this->request->getPost('suspended'),
-                'active' => $this->request->getPost('active')
+                'active' => $this->request->getPost('active'),
+                'password' => $this->security->hash($this->request->getPost('password'))
             ]);
-
-            $form = new UsersForm($user, [
+            if ($user->save()) {
+                $this->flash->success("User was updated successfully");
+            }
+/*            $form = new UsersForm($user, [
                 'edit' => true
             ]);
-
             if ($form->isValid($this->request->getPost()) == false) {
                 foreach ($form->getMessages() as $message) {
                     $this->flash->error($message);
@@ -139,7 +141,7 @@ class UsersController extends ControllerBase
 
                     $form->clear();
                 }
-            }
+            }*/
         }
 
         $this->view->user = $user;

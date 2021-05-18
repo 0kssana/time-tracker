@@ -29,6 +29,7 @@
         {
             $(this).prop('value', 'start');
         }
+        console.log(state)
 
         $.ajax(
         {
@@ -42,7 +43,6 @@
 
             success: function(data)
             {
-
                 $("#timertable").empty();
 
                 $.each(data, function(index, value)

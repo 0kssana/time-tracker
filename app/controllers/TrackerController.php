@@ -15,6 +15,7 @@ class TrackerController extends ControllerBase
 
     public function testAction()
     {
+//        return json_encode(123);
         $user_id = '';
         if ($this->session->has('id')) {
             // Получение значения
@@ -32,7 +33,7 @@ class TrackerController extends ControllerBase
             $time = new Tracker();
             $time->start_time = $time_now;
             $time->state = $state;
-            $time->user_id = $user_id;
+//            $time->user_id = $user_id;
             $time->save();
         } else if ($state == "stop")
         {
