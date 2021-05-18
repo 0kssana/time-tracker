@@ -45,8 +45,8 @@ class UsersForm extends Form
         $this->add($id);
 
         $name = new Text('name', [
-           // 'placeholder' => 'Name'
-        ]);       
+            // 'placeholder' => 'Name'
+        ]);
         $name->setLabel('Name');
         $name->addValidators([
             new PresenceOf([
@@ -56,8 +56,8 @@ class UsersForm extends Form
         $this->add($name);
 
         $email = new EmailText('email', [
-        ]);       
-        $email->setLabel('Email');  
+        ]);
+        $email->setLabel('Email');
         $email->addValidators([
             new PresenceOf([
                 'message' => 'The e-mail is required'
@@ -86,8 +86,8 @@ class UsersForm extends Form
         ]);
         $profilesId->setLabel('Profile');
         $this->add($profilesId);
-        
-        
+
+
         $banned = new Select('banned', [
             'Y' => 'Yes',
             'N' => 'No'
@@ -95,14 +95,14 @@ class UsersForm extends Form
         $banned->setLabel('Banned');
         $this->add($banned);
 
-        
+
         $suspended = new Select('suspended', [
             'Y' => 'Yes',
             'N' => 'No'
         ]);
         $suspended->setLabel('Suspended');
         $this->add($suspended);
-        
+
 
         $active = new Select('active', [
             'Y' => 'Yes',
