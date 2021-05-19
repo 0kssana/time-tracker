@@ -7,6 +7,10 @@ return new Config([
     'privateResources' => [
         'users' => [
             'index',
+            'search',
+            'edit',
+            'create',
+            'delete',
             'changePassword'
         ],
         'profiles' => [

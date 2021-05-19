@@ -18,16 +18,11 @@ $router->add('/logout', [
     'controller' => 'session',
     'action' => 'logout',
 ]);
-//
-//$router->add('/tracker', [
-//    'controller' => 'tracker',
-//    'action' => 'index',
-//]);
 
-//$router->add('/time', [
-//    'controller' => 'tracker',
-//    'action' => 'test',
-//]);
+$router->add('/tracker', [
+    'controller' => 'tracker',
+    'action' => 'index',
+]);
 
 $router->add('/user', [
     'controller' => 'users',
@@ -52,6 +47,11 @@ $router->add('/edit/{user_id}', [
 $router->add('/search', [
     'controller' => 'users',
     'action' => 'search',
+]);
+
+$router->add('/permissions', [
+    'controller' => 'permissions',
+    'action' => 'index',
 ]);
 
 return $router;

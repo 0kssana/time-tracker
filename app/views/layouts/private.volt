@@ -9,7 +9,8 @@
               {%- set menus = [
               'Home': null,
               'Users': 'users',
-              'Profiles': 'profiles'
+              'Profiles': 'profiles',
+              'Permissions': 'permissions'
             ] -%}
 
                 {%- for key, value in menus %}
