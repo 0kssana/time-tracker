@@ -54,4 +54,8 @@ $router->add('/permissions', [
     'action' => 'index',
 ]);
 
+$router->add('/holidays', [
+    'controller' => 'holidays',
+    'action' => 'index',
+    ]);
 return $router;

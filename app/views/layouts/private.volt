@@ -10,7 +10,8 @@
               'Home': null,
               'Users': 'users',
               'Profiles': 'profiles',
-              'Permissions': 'permissions'
+              'Permissions': 'permissions',
+              'Holidays': 'holidays'
             ] -%}
 
                 {%- for key, value in menus %}

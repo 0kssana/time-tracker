@@ -5,9 +5,10 @@ namespace Timetracker\Controllers;
 
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
+use Timetracker\Models\Holidays;
 
 
-class HolidayController extends ControllerBase
+class HolidaysController extends ControllerBase
 {
     /**
      * Index action
@@ -17,12 +18,12 @@ class HolidayController extends ControllerBase
 
         $this->view->setVar('logged_in', is_array($this->auth->getIdentity()));
         $this->view->setTemplateBefore('public');
-        $this->view->holidays = Holiday::find();
+        $this->view->holidays = Holidays::find();
 
     }
 
     /**
-     * Searches for holiday
+     * Searches for holidays
      */
     public function searchAction()
     {
@@ -43,10 +44,10 @@ class HolidayController extends ControllerBase
 
         $holiday = Holiday::find($parameters);
         if (count($holiday) == 0) {
-            $this->flash->notice("The search did not find any holiday");
+            $this->flash->notice("The search did not find any holidays");
 
             $this->dispatcher->forward([
-                "controller" => "holiday",
+                "controller" => "holidays",
                 "action" => "index"
             ]);
 
@@ -71,7 +72,7 @@ class HolidayController extends ControllerBase
     }
 
     /**
-     * Edits a holiday
+     * Edits a holidays
      *
      * @param string $id
      */
@@ -81,12 +82,12 @@ class HolidayController extends ControllerBase
         $this->view->setTemplateBefore('public');
         if (!$this->request->isPost()) {
 
-            $holiday = Holiday::findFirstByid($id);
+            $holiday = Holidays::findFirstByid($id);
             if (!$holiday) {
-                $this->flash->error("holiday was not found");
+                $this->flash->error("holidays was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "holiday",
+                    'controller' => "holidays",
                     'action' => 'index'
                 ]);
 
@@ -105,20 +106,20 @@ class HolidayController extends ControllerBase
     }
 
     /**
-     * Creates a new holiday
+     * Creates a new holidays
      */
     public function createAction()
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'index'
             ]);
 
             return;
         }
 
-        $holiday = new Holiday();
+        $holiday = new Holidays();
         $holiday->name = $this->request->getPost("name");
         $holiday->day = $this->request->getPost("day");
         $holiday->month = $this->request->getPost("month");
@@ -131,23 +132,23 @@ class HolidayController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'new'
             ]);
 
             return;
         }
 
-        $this->flash->success("holiday was created successfully");
+        $this->flash->success("holidays was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "holiday",
+            'controller' => "holidays",
             'action' => 'index'
         ]);
     }
 
     /**
-     * Saves a holiday edited
+     * Saves a holidays edited
      *
      */
     public function saveAction()
@@ -155,7 +156,7 @@ class HolidayController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'index'
             ]);
 
@@ -163,13 +164,13 @@ class HolidayController extends ControllerBase
         }
 
         $id = $this->request->getPost("id");
-        $holiday = Holiday::findFirstByid($id);
+        $holiday = Holidays::findFirstByid($id);
 
         if (!$holiday) {
-            $this->flash->error("holiday does not exist " . $id);
+            $this->flash->error("holidays does not exist " . $id);
 
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'index'
             ]);
 
@@ -189,7 +190,7 @@ class HolidayController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'edit',
                 'params' => [$holiday->id]
             ]);
@@ -197,27 +198,27 @@ class HolidayController extends ControllerBase
             return;
         }
 
-        $this->flash->success("holiday was updated successfully");
+        $this->flash->success("holidays was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "holiday",
+            'controller' => "holidays",
             'action' => 'index'
         ]);
     }
 
     /**
-     * Deletes a holiday
+     * Deletes a holidays
      *
      * @param string $id
      */
     public function deleteAction($id)
     {
-        $holiday = Holiday::findFirstByid($id);
+        $holiday = Holidays::findFirstByid($id);
         if (!$holiday) {
-            $this->flash->error("holiday was not found");
+            $this->flash->error("holidays was not found");
 
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'index'
             ]);
 
@@ -231,17 +232,17 @@ class HolidayController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "holiday",
+                'controller' => "holidays",
                 'action' => 'search'
             ]);
 
             return;
         }
 
-        $this->flash->success("holiday was deleted successfully");
+        $this->flash->success("holidays was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "holiday",
+            'controller' => "holidays",
             'action' => "index"
         ]);
     }

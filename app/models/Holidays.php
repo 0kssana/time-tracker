@@ -2,8 +2,9 @@
 
 namespace Timetracker\Models;
 
+use Phalcon\Mvc\Model;
 
-class Holiday extends Model
+class Holidays extends Model
 {
 
     /**
@@ -14,7 +15,7 @@ class Holiday extends Model
 
     /**
      *
-     * @var integer
+     * @var string
      */
     public $name;
 
@@ -23,6 +24,7 @@ class Holiday extends Model
      * @var string
      */
     public $day;
+
     /**
      *
      * @var string
@@ -41,7 +43,7 @@ class Holiday extends Model
     public function initialize()
     {
         $this->setSchema("time");
-        $this->setSource("holiday");
+        $this->setSource("holidays");
     }
 
     /**
@@ -51,14 +53,14 @@ class Holiday extends Model
      */
     public function getSource()
     {
-        return 'holiday';
+        return 'holidays';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Holiday[]|Holiday|\Phalcon\Mvc\Model\ResultSetInterface
+     * @return Holidays[]|Holidays|\Phalcon\Mvc\Model\ResultSetInterface
      */
     public static function find($parameters = null)
     {
@@ -69,12 +71,11 @@ class Holiday extends Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Holiday|\Phalcon\Mvc\Model\ResultInterface
+     * @return Holidays|\Phalcon\Mvc\Model\ResultInterface
      */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
     }
-
 
 }

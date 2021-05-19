@@ -1,13 +1,8 @@
-<?php
-/**
- * @var \Phalcon\Mvc\View\Engine\Php $this
- */
-?>
 
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["holiday", "Go Back"]) ?></li>
+            <li class="previous"><?php echo $this->tag->linkTo(["holidays", "Go Back"]) ?></li>
         </ul>
     </nav>
 </div>
@@ -23,7 +18,7 @@
 <?php
     echo $this->tag->form(
         [
-            "holiday/create",
+            "holidays/create",
             "autocomplete" => "off",
             "class" => "form-horizontal"
         ]
@@ -33,7 +28,7 @@
 <div class="form-group">
     <label for="fieldName" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["name", "type" => "number", "class" => "form-control", "id" => "fieldName"]) ?>
+        <?php echo $this->tag->textField(["name", "class" => "form-control", "id" => "fieldName"]) ?>
     </div>
 </div>
 
