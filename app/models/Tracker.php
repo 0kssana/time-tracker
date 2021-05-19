@@ -18,9 +18,15 @@ class Tracker extends Model
         $this->hasMany("id", 'Users', "user_id");
     }
 
-    public function setSchema($string)
-    {
-    }
 
+    public static function changeFormatTime($sum)
+    {
+        // Total
+        if ($sum <= 0) {
+            return ' ';
+        } else {
+            return sprintf("%02d", floor($sum / 60)) . ':' . sprintf("%02d", str_pad(($sum % 60), 2, "0", STR_PAD_LEFT)) . "";
+        }
+    }
 
 }
