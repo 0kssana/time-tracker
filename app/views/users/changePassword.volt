@@ -5,7 +5,7 @@
         <div class="col-xl-6 mb-4 mt-4">
             <h1 class="mb-sm-4 pb-sm-2">Change Password</h1>
              
-            {{ form("users/changePassword", 'role': 'form', 'auto-complete': 'off') }}
+            {{ form("settings", 'role': 'form', 'auto-complete': 'off') }}
             
                 <div class="row form-group">
                     {{ form.label('password', ['class' : 'col-md-3 col-form-lable']) }}

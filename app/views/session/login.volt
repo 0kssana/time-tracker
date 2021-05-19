@@ -22,9 +22,6 @@
 
 		<hr>
 
-		<div class="forgot">
-			{{ link_to("session/forgotPassword", "Forgot password ?", "class":"form-text text-muted") }}
-		</div>
 
 	    </form>
 	</div>

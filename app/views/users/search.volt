@@ -35,7 +35,7 @@
                     <td>{{ user.banned == 'Y' ? 'Yes' : 'No' }}</td>
                     <td>{{ user.suspended == 'Y' ? 'Yes' : 'No' }}</td>
                     <td>{{ user.active == 'Y' ? 'Yes' : 'No' }}</td>
-                    <td width="12%">{{ link_to("users/edit/" ~ user.id, '<span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Edit', "class": "btn btn-light btn-sm") }}</td>
+                    <td width="12%">{{ link_to("edit/" ~ user.id, '<span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Edit', "class": "btn btn-light btn-sm") }}</td>
                     <td width="12%">{{ link_to("users/delete/" ~ user.id, '<span class="oi oi-x" title="X" aria-hidden="true"></span> Delete', "class": "btn btn-light btn-sm") }}</td>
                 </tr>
                 {% if loop.last %}
@@ -45,7 +45,7 @@
                         <td colspan="10" class="text-right">
                             <ul class="pagination mb-0">
                                 <li class="page-item">
-                                    {{ link_to("users/search", '<span class="oi oi-media-skip-backward" title="skip backward" aria-hidden="true"></span> First', "class": "page-link") }}
+                                    {{ link_to("search", '<span class="oi oi-media-skip-backward" title="skip backward" aria-hidden="true"></span> First', "class": "page-link") }}
                                 </li>
                                 <li class="page-item">
                                     {{ link_to("users/search?page=" ~ page.before, '<span class="oi oi-media-step-backward" title="step backward" aria-hidden="true"></span> Previous', "class": "page-link") }}
@@ -54,10 +54,10 @@
                                     {{ link_to("#", page.current ~ "/" ~ page.total_pages, "class":"page-link") }}
                                 </li>
                                 <li class="page-item">
-                                    {{ link_to("users/search?page=" ~ page.next, '<span class="oi oi-media-step-forward" title="step forward" aria-hidden="true"></span> Next', "class": "page-link") }}
+                                    {{ link_to("search?page=" ~ page.next, '<span class="oi oi-media-step-forward" title="step forward" aria-hidden="true"></span> Next', "class": "page-link") }}
                                 </li>
                                 <li class="page-item">
-                                    {{ link_to("users/search?page=" ~ page.last, '<span class="oi oi-media-skip-forward" title="skip forward" aria-hidden="true"></span> Last', "class": "page-link") }}
+                                    {{ link_to("search?page=" ~ page.last, '<span class="oi oi-media-skip-forward" title="skip forward" aria-hidden="true"></span> Last', "class": "page-link") }}
                                 </li>
 
                             </ul>

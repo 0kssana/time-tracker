@@ -8,7 +8,7 @@
         <div align="right">
         {%- if logged_in is empty -%}
             {{ link_to(
-                    'session/login',
+                    'login',
                     '<span class="oi oi-check" aria-hidden="true"></span> Go to my workspace',
                     'class': 'btn btn-primary btn-lg'
                 )

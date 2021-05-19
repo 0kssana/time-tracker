@@ -9,8 +9,7 @@
               {%- set menus = [
               'Home': null,
               'Users': 'users',
-              'Profiles': 'profiles',
-              'Permissions': 'permissions'
+              'Profiles': 'profiles'
             ] -%}
 
                 {%- for key, value in menus %}
@@ -36,10 +35,10 @@
           <li class="nav-item dropdown">
               <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="drop-menu">{{ auth.getName() }}</a> 
             <div class="dropdown-menu dropdown-menu-right" aria-lablledby="drop-menu">
-              {{ link_to('users/changePassword', 'Change Password' , 'class': 'dropdown-item') }}
+              {{ link_to('settings', 'Change Password' , 'class': 'dropdown-item') }}
             </div>
           </li>
-          <li class="nav-item">{{ link_to('session/logout', 'Logout', 'class': 'nav-link')}}</li>
+          <li class="nav-item">{{ link_to('logout', 'Logout', 'class': 'nav-link')}}</li>
         </ul>                
         </div>
 

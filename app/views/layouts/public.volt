@@ -8,7 +8,7 @@
         <ul class="navbar-nav">
 
             {%- set menus = [
-                  'Home': 'index',
+                  'Home': null,
                   'About': 'about'
                 ] -%}
 
@@ -32,10 +32,9 @@
             <ul class="navbar-nav">
             {%- if logged_in is defined and not(logged_in is empty) -%}
                 <li class="nav-item">{{ link_to('users', 'Users Panel', 'class':'nav-link') }}</li>
-                <li class="nav-item">{{ link_to('session/logout', 'Logout', 'class':'nav-link') }}</li>
+                <li class="nav-item">{{ link_to('logout', 'Logout', 'class':'nav-link') }}</li>
             {% else %}
-                <li class="nav-item">{{ link_to('session/login', 'Login', 'class':'nav-link') }}</li>
-                <li class="nav-item">{{ link_to('session/signup', 'Register', 'class':'nav-link') }}</li>
+                <li class="nav-item">{{ link_to('login', 'Login', 'class':'nav-link') }}</li>
             {% endif %}
             </ul>
         </div>

@@ -9,13 +9,12 @@ class TrackerController extends ControllerBase
 {
     public function indexAction()
     {
-//        print_die('nh');
-//        $this->assets->addJs('js/main.js');
+
     }
 
     public function testAction()
     {
-//        return json_encode(123);
+
         $user_id = '';
         if ($this->session->has('id')) {
             // Получение значения
@@ -48,18 +47,18 @@ class TrackerController extends ControllerBase
         return json_encode($time);
     }
 
-    public function timesAction()
-    {
-        $time = Tracker::find();
-        $time->toArray();
-        print_die($time->toArray());
-    }
-
-    public function staffAction()
-    {
-        $x = date("H:i");
-        print_die($x);
-
-        $time = new Tracker();
-    }
+//    public function timesAction()
+//    {
+//        $time = Tracker::find();
+//        $time->toArray();
+//        print_die($time->toArray());
+//    }
+//
+//    public function staffAction()
+//    {
+//        $x = date("H:i");
+//        print_die($x);
+//
+//        $time = new Tracker();
+//    }
 }
