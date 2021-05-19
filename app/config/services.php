@@ -1,4 +1,5 @@
 <?php
+
 use Phalcon\Mvc\View;
 use Phalcon\Crypt;
 use Phalcon\Mvc\Dispatcher;
