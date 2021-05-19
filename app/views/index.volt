@@ -16,9 +16,7 @@
 	</head>
 	<body>
 		{{ content() }}
-        {{ javascript_include('js/jquery-3.3.1.min.js') }}
-        {{ javascript_include('js/bootstrap.bundle.min.js') }}
-        {{ javascript_include('js/main.js') }}
+                {{ javascript_include('js/main.js') }}
 
 	</body>
 	<footer>

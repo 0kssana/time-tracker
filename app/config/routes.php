@@ -18,11 +18,16 @@ $router->add('/logout', [
     'controller' => 'session',
     'action' => 'logout',
 ]);
+//
+//$router->add('/tracker', [
+//    'controller' => 'tracker',
+//    'action' => 'index',
+//]);
 
-$router->add('/tracker', [
-    'controller' => 'tracker',
-    'action' => 'index',
-]);
+//$router->add('/time', [
+//    'controller' => 'tracker',
+//    'action' => 'test',
+//]);
 
 $router->add('/user', [
     'controller' => 'users',

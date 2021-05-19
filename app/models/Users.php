@@ -72,6 +72,7 @@ class Users extends Model
 
     public function initialize()
     {
+        $this->setSource("users");
         $this->belongsTo('profilesId', __NAMESPACE__ . '\Profiles', 'id', [
             'alias' => 'profile',
             'reusable' => true
@@ -91,11 +92,22 @@ class Users extends Model
             ]
         ]);
 
+        $this->hasMany('id', __NAMESPACE__ . '\TimeData', 'user_id', [
+            'alias' => 'times',
+            'reusable' => true
+        ]);
+
         $this->hasMany('id', __NAMESPACE__ . '\ResetPasswords', 'usersId', [
             'alias' => 'resetPasswords',
             'foreignKey' => [
                 'message' => 'User cannot be deleted because he/she has activity in the system'
             ]
         ]);
+    }
+
+
+    public function getTimes($params = null)
+    {
+        return $this->getRelated('Time');
     }
 }

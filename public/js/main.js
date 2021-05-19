@@ -1,18 +1,12 @@
-
-$('#timerbutton').on('click', function (event)
-{
+$('#timerbutton').on('click', function (event) {
     event.preventDefault();
     let state = $(this).val();
-    if (state == "start")
-    {
+    if (state == "start") {
         $(this).prop('value', 'stop');
-    }
-    else
-    {
+    } else {
         $(this).prop('value', 'start');
     }
-    console.log(state)
-
+    console.log(state);
     $.ajax(
         {
             type: "POST",
@@ -22,16 +16,12 @@ $('#timerbutton').on('click', function (event)
                 {
                     "state": state
                 },
-
-            success: function(data)
-            {
+            success: function (data) {
                 $("#timertable").empty();
-
-                $.each(data, function(index, value)
-                {
-                    console.log( "start time" + ": " + value['start_time']);
-                    console.log( "end time" + ": " + value['end_time']);
-                    $("#timertable").append("<tr><td>"+value['start_time']+" <> </td><td>"+value['end_time'] +"</td></tr>");
+                $.each(data, function (index, value) {
+                    console.log("start time" + ": " + value['start_time']);
+                    console.log("end time" + ": " + value['end_time']);
+                    $("#timertable").append("<tr><td>" + value['start_time'] + " <> </td><td>" + value['end_time'] + "</td></tr>");
                 });
             }
         });
