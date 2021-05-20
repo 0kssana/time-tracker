@@ -10,16 +10,19 @@
                 <!-- Open-iconic fonts for bootstrap -->
                 {{ stylesheet_link('css/open-iconic-bootstrap.css') }}
                 {{ stylesheet_link('css/style.css') }}
+
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 	</head>
 	<body>
 		{{ content() }}
-                {{ javascript_include('js/main.js') }}
+        {{ javascript_include('js/main.js') }}
+        {{ javascript_include('js/jquery-3.3.1.min.js') }}
+        {{ javascript_include('js/bootstrap.bundle.min.js') }}
 
 	</body>
 	<footer>
-	          {{ partial('partials/footer') }}
-	 </footer>
+        {{ partial('partials/footer') }}
+	</footer>
 </html>

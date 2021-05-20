@@ -36,12 +36,6 @@
         <?php echo $this->tag->textField(["time","size" => 30, "class" => "form-control", "id" => "fieldTime"]) ?>
     </div>
 </div>
-<div class="form-group">
-    <label for="fieldTime" class="col-sm-2 control-label">Total limit in month</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["total","size" => 30, "class" => "form-control", "id" => "fieldTotal"]) ?>
-    </div>
-</div>
 
 
 <?php echo $this->tag->hiddenField("id") ?>

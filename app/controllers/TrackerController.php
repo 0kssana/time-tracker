@@ -66,8 +66,8 @@
 
 namespace Timetracker\Controllers;
 
-//use Phalcon\Mvc\Controller;
-use http\Client\Curl\User;
+use Timetracker\Models\Latecomers;
+use Timetracker\Models\Late;
 use Timetracker\Models\TimeData;
 use Timetracker\Models\Users;
 use DateTime;
@@ -80,6 +80,9 @@ class TrackerController extends ControllerBase
     {
 
         $userId = '';
+        //print_die($_GET['month']);
+        //$month = $request->get('month') ??  date("m");
+        //$year = $request->get('year') ?? date("Y");
         if ($this->session->has('id')) {
             // Получение значения
             $userId = $this->session->get('id');
@@ -124,6 +127,18 @@ class TrackerController extends ControllerBase
             $time->user_id = $user_id;
             $time->date = $today;
             $time->save();
+
+            $late = Late::findFirstByid(1)->toArray();
+            $lateTime = strtotime($late['time']);
+            $startTime = strtotime($time->start_time);
+            if ($lateTime < $startTime) {
+                $userLate = new Latecomers();
+                $userLate->user_id = $user_id;
+                $userLate->date = $today;
+                $userLate->time = $timeNow;
+                $userLate->save();
+
+            }
             $this->session->set('last_time_id', $time->id);
         } else if ($state == "stop") {
             $last_id = $this->session->get('last_time_id');
@@ -171,7 +186,7 @@ class TrackerController extends ControllerBase
         $result = (strtotime($start) - strtotime($stop)) / 60;
         print_die($result);
 
-           $time = new Time();
+        $time = new Time();
         if (isset($_POST['start'])) {
             $date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
             $start_time = $date->format('H:i:s');

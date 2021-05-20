@@ -6,7 +6,6 @@ $('#timerbutton').on('click', function (event) {
     } else {
         $(this).prop('value', 'start');
     }
-    console.log(state);
     $.ajax(
         {
             type: "POST",
@@ -17,6 +16,7 @@ $('#timerbutton').on('click', function (event) {
                     "state": state
                 },
             success: function (data) {
+                console.log(data);
                 $("#timertable").empty();
                 $.each(data, function (index, value) {
                     console.log("start time" + ": " + value['start_time']);

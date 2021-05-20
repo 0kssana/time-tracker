@@ -28,7 +28,7 @@
             <td>{{ profile.name }}</td>
             <td>{{ profile.active == 'Y' ? 'Yes' : 'No' }}</td>
             <td width="12%">{{ link_to("profiles/edit/" ~ profile.id, '<span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Edit', "class": "btn btn-light btn-sm") }}</td>
-            <td width="12%">{{ link_to("profiles/delete/" ~ profile.id, '<span class="oi oi-x" title="X" aria-hidden="true"></span> Delete', "class": "btn btn-light btn-sm") }}</td>
+          <!--  <td width="12%">{{ link_to("profiles/delete/" ~ profile.id, '<span class="oi oi-x" title="X" aria-hidden="true"></span> Delete', "class": "btn btn-light btn-sm") }}</td> -->
         </tr>
 {% if loop.last %}
     </tbody>

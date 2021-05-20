@@ -36,8 +36,8 @@
                     <td>{{ user.suspended == 'Y' ? 'Yes' : 'No' }}</td>
                     <td>{{ user.active == 'Y' ? 'Yes' : 'No' }}</td>
                     <td width="12%">{{ link_to("edit/" ~ user.id, '<span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Edit', "class": "btn btn-light btn-sm") }}</td>
-                    <td width="12%">{{ link_to("users/delete/" ~ user.id, '<span class="oi oi-x" title="X" aria-hidden="true"></span> Delete', "class": "btn btn-light btn-sm") }}</td>
-                </tr>
+                 <!--   <td width="12%">{{ link_to("users/delete/" ~ user.id, '<span class="oi oi-x" title="X" aria-hidden="true"></span> Delete', "class": "btn btn-light btn-sm") }}</td>
+               --> </tr>
                 {% if loop.last %}
                 </tbody>
                 <tfoot>

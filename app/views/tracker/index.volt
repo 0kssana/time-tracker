@@ -9,7 +9,7 @@
 
 <div class="calensar" style="margin: 100px">
 
-    <form action="tracker/index" method="POST">
+    <form action="index" method="GET">
         <select name="month" onchange="this.form.submit();" class="form-control" style="width: 100px">
             <option value="all" selected="selected">All</option>
             <option value="1">January</option>
@@ -70,7 +70,8 @@
                     <?php foreach ($user->times as $workTime) { ?>
                         <?php if ($dateTime == $workTime->date && $workTime->user_id == $userId) { ?>
                             <div>
-                                <?php echo $workTime->start_time . " : " . $workTime->end_time. "<br/><p> Total time: " . $workTime->total_time  . " </p>" ?>
+                                <?php echo $workTime->start_time . " : " . $workTime->end_time. " || " . $workTime->work_time . "<br>" ;
+                                      echo "<p> Total time:" . $workTime->total_time . " </p>"; ?>
                             </div>
                         <?php } ?>
                     <?php } ?>

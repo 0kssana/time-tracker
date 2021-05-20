@@ -20,46 +20,6 @@ class LateController extends ControllerBase
     }
 
     /**
-     * Searches for late
-     */
-    public function searchAction()
-    {
-        $numberPage = 1;
-        if ($this->request->isPost()) {
-            $query = Criteria::fromInput($this->di, 'Late', $_POST);
-            $this->persistent->parameters = $query->getParams();
-        } else {
-            $numberPage = $this->request->getQuery("page", "int");
-        }
-
-        $parameters = $this->persistent->parameters;
-        if (!is_array($parameters)) {
-            $parameters = [];
-        }
-        $parameters["order"] = "id";
-
-        $late = Late::find($parameters);
-        if (count($late) == 0) {
-            $this->flash->notice("The search did not find any late");
-
-            $this->dispatcher->forward([
-                "controller" => "late",
-                "action" => "index"
-            ]);
-
-            return;
-        }
-
-        $paginator = new Paginator([
-            'data' => $late,
-            'limit'=> 10,
-            'page' => $numberPage
-        ]);
-
-        $this->view->page = $paginator->getPaginate();
-    }
-
-    /**
      * Displays the creation form
      */
     public function newAction()
@@ -94,7 +54,6 @@ class LateController extends ControllerBase
 
             $this->tag->setDefault("id", $late->id);
             $this->tag->setDefault("time", $late->time);
-            $this->tag->setDefault("total", $late->total);
 
         }
     }

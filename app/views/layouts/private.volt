@@ -42,13 +42,13 @@
             </div>
           </li>
           <li class="nav-item">{{ link_to('logout', 'Logout', 'class': 'nav-link')}}</li>
-        </ul>                
+        </ul>
         </div>
 
  </nav>
 
-        <main role="main" class="container mt-4">           
-            {{ content() }}            
+        <main role="main" class="container mt-4">
+            {{ content() }}
         </main>
 
 <!-- {# our common footer #}

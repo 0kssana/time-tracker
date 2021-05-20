@@ -46,7 +46,7 @@ class Acl extends Component
         'create' => 'Create',
         'edit' => 'Edit',
         'delete' => 'Delete',
-        'changePassword' => 'Change password'
+        'settings' => 'Change password'
     ];
 
     /**
