@@ -58,6 +58,10 @@ class LateController extends ControllerBase
         }
     }
 
+    public function latecomersAction()
+    {
+
+    }
     /**
      * Creates a new late
      */

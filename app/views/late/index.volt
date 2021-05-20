@@ -4,7 +4,7 @@
         Search late
     </h1>
     <p>
-        <?php echo $this->tag->linkTo(["late/new", "Create late"]) ?>
+        <?php echo $this->tag->linkTo(["latecomers", "All latecomers"]) ?>
     </p>
 </div>
 

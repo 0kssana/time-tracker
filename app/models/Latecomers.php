@@ -2,10 +2,10 @@
 namespace Timetracker\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Relation;
 
 class Latecomers extends Model
 {
-
     /**
      *
      * @var integer
@@ -38,7 +38,7 @@ class Latecomers extends Model
         $this->setSchema("time");
         $this->setSource("latecomers");
         $this->belongsTo('user_id', __NAMESPACE__ . '\Users', 'id', [
-            'alias' => 'user',
+            'alias' => 'users',
             'reusable' => true
         ]);
     }

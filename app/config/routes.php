@@ -63,4 +63,8 @@ $router->add('/late', [
     'controller' => 'late',
     'action' => 'index',
 ]);
+$router->add('/latecomers', [
+    'controller' => 'latecomers',
+    'action' => 'index',
+]);
 return $router;
