@@ -70,7 +70,7 @@
                     <?php foreach ($user->times as $workTime) { ?>
                         <?php if ($dateTime == $workTime->date && $workTime->user_id == $userId) { ?>
                             <div>
-                                <?php echo $workTime->start_time . " : " . $workTime->end_time. "<br/>".  $workTime->total_time ?>
+                                <?php echo $workTime->start_time . " : " . $workTime->end_time. "<br/><p> Total time: " . $workTime->total_time  . " </p>" ?>
                             </div>
                         <?php } ?>
                     <?php } ?>

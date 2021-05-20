@@ -99,6 +99,8 @@ class TrackerController extends ControllerBase
 
         );
         $this->assets->addJs('js/main.js');
+
+
     }
 
     public function testAction()
@@ -151,7 +153,6 @@ class TrackerController extends ControllerBase
                 $sum = $sum + intval($item->work_time);
             }
             $hours = TimeData::changeFormatTime($sum);
-//        print_die($hours);
             $last->work_time = abs($work_time);
             $last->total_time = $hours;
             $last->update();
@@ -174,7 +175,6 @@ class TrackerController extends ControllerBase
         if (isset($_POST['start'])) {
             $date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
             $start_time = $date->format('H:i:s');
-//            print_die($start_time);
 
             $time->started_time = $start_time;
 

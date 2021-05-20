@@ -58,4 +58,9 @@ $router->add('/holidays', [
     'controller' => 'holidays',
     'action' => 'index',
     ]);
+
+$router->add('/late', [
+    'controller' => 'late',
+    'action' => 'index',
+]);
 return $router;

@@ -23,7 +23,7 @@
 <?php
     echo $this->tag->form(
         [
-            "holiday/save",
+            "holidays/save",
             "autocomplete" => "off",
             "class" => "form-horizontal"
         ]
