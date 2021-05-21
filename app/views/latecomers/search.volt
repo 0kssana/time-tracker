@@ -1,4 +1,4 @@
-<!--
+
 <?php
 /**
  * @var \Phalcon\Mvc\View\Engine\Php $this
@@ -25,19 +25,18 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-            <th>Date</th>
             <th>Name</th>
             <th>Start Time</th>
-            <th colspan="2">Action</th>
             </tr>
         </thead>
-        <tbody>
-        <?php foreach ($page->items as $users): ?>
-            <tr>
-                <td><?php echo $users->id ?></td>
-                <td><?php echo $users->name ?></td>
-            </tr>
-        <?php endforeach; ?>
+            <tbody>
+            {% for latecomers in page.items  %}
+                    <tr>
+                        <td>{{  latecomers.usersLate.name }}</td>
+                    </tr>
+            {% endfor %}
+        <tr>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -60,7 +59,7 @@
     </div>
 </div>
 
--->
+
 
 <!--
 {{ content() }}

@@ -50,12 +50,7 @@ class LatecomersController extends ControllerBase
             $parameters = $this->persistent->searchParams;
         }
 
-        $latecomers = Latecomers::find($parameters)->toArray();
-        $latecomerIds = array_column($latecomers,'user_id');
-
-        $users = Users::findFirst([
-            'conditions' => 'WHERE id IN',$latecomerIds
-        ]);
+        $latecomers = Latecomers::find($parameters);
 
         if (count($latecomers) == 0) {
             $this->flash->notice("The search did not find any latecomers");
@@ -64,9 +59,8 @@ class LatecomersController extends ControllerBase
                 "action" => "index"
             ]);
         }
-
         $paginator = new Paginator([
-            "data" => $users,
+            "data" => $latecomers,
             "limit" => 10,
             "page" => $numberPage
         ]);
@@ -102,6 +96,7 @@ class LatecomersController extends ControllerBase
             'edit' => true
         ]);
         $this->view->form->clear();
+
 
         $this->view->latecomers = $latecomers;
     }

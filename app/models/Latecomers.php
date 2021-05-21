@@ -38,7 +38,7 @@ class Latecomers extends Model
         $this->setSchema("time");
         $this->setSource("latecomers");
         $this->belongsTo('user_id', __NAMESPACE__ . '\Users', 'id', [
-            'alias' => 'users',
+            'alias' => 'usersLate',
             'reusable' => true
         ]);
     }

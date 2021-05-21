@@ -255,12 +255,11 @@ class UsersController extends ControllerBase
         }
         $workTimeId = $this->request->getPost('id');
         $workTime = TimeData::findFirstById($workTimeId);
-        $userId = $workTime->getUserId();
+        //$userId = $workTime->getUserId();
         if(!$workTime){
             $this->flash->error('WorkTime was not found');
             $this->dispatcher->forward([
                 'action'     => 'index',
-                'params'     => [$userId],
             ]);
         }
         $form = new TimeForm();
@@ -268,10 +267,8 @@ class UsersController extends ControllerBase
         $data = $this->request->getPost();
         if(!$form->isValid($data, $workTime)){
             $this->flash->error('Form is not valid!');
-
             $this->dispatcher->forward([
                 'action'     => 'update',
-                'params'     => [$workTimeId],
             ]);
         }
         if(!$workTime->save()){
@@ -279,14 +276,12 @@ class UsersController extends ControllerBase
 
             $this->dispatcher->forward([
                 'action'     => 'update',
-                'params'     => [$workTimeId],
             ]);
         }
         $form->clear();
         $this->flash->success('WorkTime was updated successfully');
         $this->dispatcher->forward([
-            'action'     => 'index',
-            'params'     => [$userId],
+            'action'     => 'index'
         ]);
     }
 
