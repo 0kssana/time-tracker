@@ -34,9 +34,6 @@ return new Config([
         ],
         'latecomers' => [
             'index'
-        ],
-        'tracker' => [
-            'index'
         ]
     ]
 ]);
