@@ -10,6 +10,8 @@ return new Config([
             'search',
             'edit',
             'time',
+            'update',
+            'save',
             'create',
             'delete',
             'changePassword'

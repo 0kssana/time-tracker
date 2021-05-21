@@ -1,10 +1,10 @@
 <div class=container>
     <ul class="pager">
         <li class="previous pull-left">
-            {{ link_to("time/index/" ~ userId, "Go back", "class": "btn btn-outline-info") }}
+            {{ link_to("search", "Go back", "class": "btn btn-outline-info") }}
         </li>
     </ul>
-{{ form('time/save', 'role': 'form') }}
+{{ form('users/save', 'role': 'form') }}
     <h2>Edit user time</h2>
 
     <fieldset>

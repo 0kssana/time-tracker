@@ -34,7 +34,7 @@
       <td>{{time.date}}</td>
 
         <td width="7%">
-          {{ link_to("time/update/" ~ time.id, "Edit") }}
+          {{ link_to("update/" ~ time.id, "Edit") }}
         </td>
   </tr>
     {% endfor %}

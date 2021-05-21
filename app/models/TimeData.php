@@ -107,5 +107,9 @@ class TimeData extends \Phalcon\Mvc\Model
             return sprintf("%02d", floor($sum / 60)) . ':' . sprintf("%02d", str_pad(($sum % 60), 2, "0", STR_PAD_LEFT)) . "";
         }
     }
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
 
 }

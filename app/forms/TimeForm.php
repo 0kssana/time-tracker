@@ -1,5 +1,7 @@
 <?php
 
+namespace Timetracker\Forms;
+
 use Phalcon\Forms\Element\AbstractElement;
 use Phalcon\Forms\Form;
 use Phalcon\Validation\Validator\PresenceOf;
@@ -19,63 +21,42 @@ class TimeForm extends Form
         /**
          * UserId time text field
          */
-        $userId = new Select(
-            'userId',
-            Users::find(),
-            [
-                'emptyText'  => 'Select one...',
-                'emptyValue' => '',
-                'useEmpty'   => true,
-                'using'      => [
-                    'id',
-                    'id',
-                ],
-            ]
-        );
+//        $userId = new Select(
+//            'userId',
+//            Users::find(),
+//            [
+//                'emptyText'  => 'Select one...',
+//                'emptyValue' => '',
+//                'useEmpty'   => true,
+//                'using'      => [
+//                    'id',
+//                    'id',
+//                ],
+//            ]
+//        );
+//
+//        $userId->setLabel('User id');
+//        $userId->addValidators([
+//            new PresenceOf(['message' => 'userId is required']),
+//        ]);
+//        $this->add($userId);
 
-        $userId->setLabel('User id');
-        $userId->addValidators([
-            new PresenceOf(['message' => 'userId is required']),
-        ]);
-        $this->add($userId);
-
-        /**
-         * Year text field
-         */
-        $year = new Text('year');
-        $year->setLabel('Year');
-        $year->addValidators([
-            new PresenceOf(['message' => 'Year is required']),
-        ]);
-
-        $this->add($year);
 
         /**
-         * Month text field
+         * Date text field
          */
-        $month = new Text('month');
-        $month->setLabel('Month');
-        $month->addValidators([
-            new PresenceOf(['message' => 'Month is required']),
+        $date = new Text('date');
+        $date->setLabel('Date');
+        $date->addValidators([
+            new PresenceOf(['message' => 'Date is required']),
         ]);
 
-        $this->add($month);
-
-        /**
-         * Day text field
-         */
-        $day = new Text('day');
-        $day->setLabel('Day');
-        $day->addValidators([
-            new PresenceOf(['message' => 'Month is required']),
-        ]);
-
-        $this->add($day);
+        $this->add($date);
 
         /**
          * Start time text field
          */
-        $startTime = new Text('startTime');
+        $startTime = new Text('start_time');
         $startTime->setLabel('Start time');
         $startTime->addValidators([
             new PresenceOf(['message' => 'Start time is required']),
@@ -96,7 +77,7 @@ class TimeForm extends Form
         /**
          * Total text field
          */
-        $total = new Text('total');
+        $total = new Text('total_time');
         $total->setLabel('Total');
         $total->addValidators([
             new PresenceOf(['message' => 'Total is required']),

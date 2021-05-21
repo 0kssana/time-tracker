@@ -6,6 +6,7 @@ use Phalcon\Tag;
 use Timetracker\Models\TimeData;
 use Timetracker\Models\Users;
 use Timetracker\Forms\UsersForm;
+use Timetracker\Forms\TimeForm;
 use Phalcon\Mvc\Model\Criteria;
 use Timetracker\Models\PasswordChanges;
 use Timetracker\Forms\ChangePasswordForm;
@@ -237,8 +238,10 @@ class UsersController extends ControllerBase
             return;
         }
         $this->view->userId = $userId;
+//        print_die($workTime->toArray());
         $this->view->form = new TimeForm($workTime, ['edit' => true]);
     }
+
 
 
     /**
@@ -246,11 +249,12 @@ class UsersController extends ControllerBase
      */
     public function saveAction()
     {
+       // print_die(123);
         if(!$this->request->isPost()){
             $this->response->redirect('/user');
         }
         $workTimeId = $this->request->getPost('id');
-        $workTime = WorkTime::findFirstById($workTimeId);
+        $workTime = TimeData::findFirstById($workTimeId);
         $userId = $workTime->getUserId();
         if(!$workTime){
             $this->flash->error('WorkTime was not found');
