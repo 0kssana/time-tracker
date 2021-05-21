@@ -44,6 +44,16 @@ $router->add('/edit/{user_id}', [
     'action' => 'edit',
 ]);
 
+$router->add('/update/{user_id}', [
+    'controller' => 'users',
+    'action' => 'edit',
+]);
+
+$router->add('/time/{user_id}', [
+    'controller' => 'users',
+    'action' => 'time',
+]);
+
 $router->add('/search', [
     'controller' => 'users',
     'action' => 'search',

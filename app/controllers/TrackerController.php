@@ -133,6 +133,9 @@ class TrackerController extends ControllerBase
                     'today' => $today,
                 ]
             ]);
+
+            print_die($isExist);
+
             if (!count($isExist->date)) {
 
                 if (strtotime($time->start_time) > strtotime($late->late_time)) {

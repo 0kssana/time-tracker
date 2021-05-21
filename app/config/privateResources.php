@@ -9,6 +9,7 @@ return new Config([
             'index',
             'search',
             'edit',
+            'time',
             'create',
             'delete',
             'changePassword'

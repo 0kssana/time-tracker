@@ -3,6 +3,7 @@
 namespace Timetracker\Controllers;
 
 use Phalcon\Tag;
+use Timetracker\Models\TimeData;
 use Timetracker\Models\Users;
 use Timetracker\Forms\UsersForm;
 use Phalcon\Mvc\Model\Criteria;
@@ -151,14 +152,11 @@ class UsersController extends ControllerBase
         ]);
     }
 
-    /**
-     * Deletes a User
-     *
-     * @param int $id
-     */
-    public function deleteAction($id)
+    public function timeAction($id)
     {
+
         $user = Users::findFirstById($id);
+
         if (!$user) {
             $this->flash->error("User was not found");
             return $this->dispatcher->forward([
@@ -166,14 +164,25 @@ class UsersController extends ControllerBase
             ]);
         }
 
-        if (!$user->delete()) {
-            $this->flash->error($user->getMessages());
-        } else {
-            $this->flash->success("User was deleted");
+        if ($this->request->isPost()) {
+            $user->assign([
+                'name' => $this->request->getPost('name', 'striptags'),
+                'profilesId' => $this->request->getPost('profilesId', 'int'),
+                'email' => $this->request->getPost('email', 'email'),
+                'banned' => $this->request->getPost('banned'),
+                'suspended' => $this->request->getPost('suspended'),
+                'active' => $this->request->getPost('active'),
+                'password' => $this->security->hash($this->request->getPost('password'))
+            ]);
+            if ($user->save()) {
+                $this->flash->success("User was updated successfully");
+            }
         }
 
-        return $this->dispatcher->forward([
-            'action' => 'index'
+        $this->view->user = $user;
+
+        $this->view->form = new UsersForm($user, [
+            'edit' => true
         ]);
     }
 
@@ -212,4 +221,69 @@ class UsersController extends ControllerBase
 
         $this->view->form = $form;
     }
+
+    /**
+     * Update users work times
+     * @param int $id
+     */
+    public function updateAction($id)
+    {
+        $workTime = TimeData::findFirstById($id);
+        $userArray = $workTime->toArray();
+        $userId = $userArray["user_id"];
+        if(!$workTime){
+            $this->flash->error('Work time was not found');
+            $this->response->redrect('/timesheet');
+            return;
+        }
+        $this->view->userId = $userId;
+        $this->view->form = new TimeForm($workTime, ['edit' => true]);
+    }
+
+
+    /**
+     * Save updated work times
+     */
+    public function saveAction()
+    {
+        if(!$this->request->isPost()){
+            $this->response->redirect('/user');
+        }
+        $workTimeId = $this->request->getPost('id');
+        $workTime = WorkTime::findFirstById($workTimeId);
+        $userId = $workTime->getUserId();
+        if(!$workTime){
+            $this->flash->error('WorkTime was not found');
+            $this->dispatcher->forward([
+                'action'     => 'index',
+                'params'     => [$userId],
+            ]);
+        }
+        $form = new TimeForm();
+        $this->view->form = $form;
+        $data = $this->request->getPost();
+        if(!$form->isValid($data, $workTime)){
+            $this->flash->error('Form is not valid!');
+
+            $this->dispatcher->forward([
+                'action'     => 'update',
+                'params'     => [$workTimeId],
+            ]);
+        }
+        if(!$workTime->save()){
+            $this->flash->error('Form is not save!');
+
+            $this->dispatcher->forward([
+                'action'     => 'update',
+                'params'     => [$workTimeId],
+            ]);
+        }
+        $form->clear();
+        $this->flash->success('WorkTime was updated successfully');
+        $this->dispatcher->forward([
+            'action'     => 'index',
+            'params'     => [$userId],
+        ]);
+    }
+
 }
