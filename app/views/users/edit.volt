@@ -44,7 +44,8 @@
                     <div class="form-group row">
                         {{ form.label('password', ['class' : 'col-md-3 col-form-label']) }}
                         <div class="col-md-9">
-                            {{ form.render('password' , ['class' : 'form-control ']) }}
+                         <!--   {{ form.render('password' , ['class' : 'form-control ']) }} -->
+                         <input type="password" name="password" class="form-control" >
                         </div>
                     </div>
                     <div class="form-group row">

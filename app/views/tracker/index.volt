@@ -7,7 +7,7 @@
         </a>
     </div>
 
-<div class="calensar" style="margin: 100px">
+<div class="calendar" style="margin: 100px">
 
    <form action="index" method="GET">
         <select name="month" onchange="this.form.submit();" class="form-control" style="width: 100px">
