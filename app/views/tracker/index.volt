@@ -9,7 +9,7 @@
 
 <div class="calensar" style="margin: 100px">
 
-    <form action="index" method="GET">
+   <form action="index" method="GET">
         <select name="month" onchange="this.form.submit();" class="form-control" style="width: 100px">
             <option value="all" selected="selected">All</option>
             <option value="1">January</option>
@@ -40,6 +40,7 @@
             <option value="2020">2020</option>
             <option value="2021" selected="selected">2021</option>
         </select>&nbsp;&nbsp;&nbsp;&nbsp;
+
     </form>
     <input id="id" type="hidden" name="id" value=""/>
 
