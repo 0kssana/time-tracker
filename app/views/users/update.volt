@@ -4,7 +4,7 @@
             {{ link_to("search", "Go back", "class": "btn btn-outline-info") }}
         </li>
     </ul>
-{{ form('users/save', 'role': 'form') }}
+{{ form('save', 'role': 'form') }}
     <h2>Edit user time</h2>
 
     <fieldset>
