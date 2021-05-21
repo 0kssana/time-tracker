@@ -12,7 +12,8 @@
               'Profiles': 'profiles',
               'Permissions': 'permissions',
               'Holidays': 'holidays',
-              'Late': 'late'
+              'Late': 'late',
+              'Latecomers': 'latecomers'
             ] -%}
 
                 {%- for key, value in menus %}

@@ -44,6 +44,7 @@ class LatecomersController extends ControllerBase
             $numberPage = $this->request->getQuery("page", "int");
         }
 
+
         $parameters = [];
         if ($this->persistent->searchParams) {
             $parameters = $this->persistent->searchParams;

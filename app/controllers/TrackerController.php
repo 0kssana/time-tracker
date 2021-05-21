@@ -122,23 +122,42 @@ class TrackerController extends ControllerBase
         $today = $date->format("Y-m-d ");
         if ($state == "start") {
             $time = new TimeData();
+
             $time->start_time = $timeNow;
+            //
+            $late = Late::findFirst();
+            $isExist = Latecomers::findFirst([
+                'conditions' => 'user_id = :user_id: AND date = :today:',
+                'bind' => [
+                    'user_id' => $user_id,
+                    'today' => $today,
+                ]
+            ]);
+            if (!count($isExist->date)) {
+
+                if (strtotime($time->start_time) > strtotime($late->late_time)) {
+                    $userLate = new Latecomers();
+                    $userLate->user_id = $user_id;
+                    $userLate->time = $timeNow;
+                    $userLate->date = $today;
+                    if ($userLate->save() === false) {
+                        $messages = $userLate->getMessages();
+                        foreach ($messages as $message) {
+                            echo $message;
+                        }
+                    } else {
+                        echo "Great, a new robot was saved successfully!";
+                    }
+                }
+
+            }
+
+
             $time->state = $state;
             $time->user_id = $user_id;
             $time->date = $today;
             $time->save();
-
-            $late = Late::findFirstByid(1)->toArray();
-            $lateTime = strtotime($late['time']);
-            $startTime = strtotime($time->start_time);
-            if ($lateTime < $startTime) {
-                $userLate = new Latecomers();
-                $userLate->user_id = $user_id;
-                $userLate->date = $today;
-                $userLate->time = $timeNow;
-                $userLate->save();
-
-            }
+            //
             $this->session->set('last_time_id', $time->id);
         } else if ($state == "stop") {
             $last_id = $this->session->get('last_time_id');

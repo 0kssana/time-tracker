@@ -7,7 +7,7 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["holiday", "Back"]) ?></li>
+            <li class="previous"><?php echo $this->tag->linkTo(["holidays", "Back"]) ?></li>
         </ul>
     </nav>
 </div>

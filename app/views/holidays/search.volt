@@ -9,8 +9,8 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["holiday/index", "Go Back"]); ?></li>
-            <li class="next"><?php echo $this->tag->linkTo(["holiday/new", "Create "]); ?></li>
+            <li class="previous"><?php echo $this->tag->linkTo(["latecomers/index", "Go Back"]); ?></li>
+            <li class="next"><?php echo $this->tag->linkTo(["latecomers/new", "Create "]); ?></li>
         </ul>
     </nav>
 </div>

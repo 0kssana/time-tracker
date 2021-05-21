@@ -3,9 +3,7 @@
     <h1>
         Search late
     </h1>
-    <p>
-        <?php echo $this->tag->linkTo(["latecomers", "All latecomers"]) ?>
-    </p>
+
 </div>
 
 <?php echo $this->getContent() ?>

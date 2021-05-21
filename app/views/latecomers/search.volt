@@ -9,8 +9,7 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["holiday/index", "Go Back"]); ?></li>
-            <li class="next"><?php echo $this->tag->linkTo(["holiday/new", "Create "]); ?></li>
+            <li class="previous"><?php echo $this->tag->linkTo(["latecomers", "Go Back"]); ?></li>
         </ul>
     </nav>
 </div>
@@ -25,13 +24,10 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
+            <th>Date</th>
             <th>Name</th>
-            <th>Date Of Holiday</th>
-            <th>Active</th>
-
-                <th></th>
-                <th></th>
+            <th>Start Time</th>
+            <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
