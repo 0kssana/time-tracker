@@ -27,12 +27,15 @@
             <tr>
             <th>Name</th>
             <th>Start Time</th>
+            <th colspan="2"> Action </th>
             </tr>
         </thead>
             <tbody>
             {% for latecomers in page.items  %}
                     <tr>
                         <td>{{  latecomers.usersLate.name }}</td>
+                        <td> {{ latecomers.time }} </td>
+                        <td width="12%">{{ link_to("latecomers/delete/" ~ latecomers.id, '<span class="oi oi-x" title="X" aria-hidden="true"></span> Delete', "class": "btn btn-light btn-sm") }}</td>
                     </tr>
             {% endfor %}
         <tr>

@@ -52,6 +52,7 @@ class LatecomersController extends ControllerBase
 
         $latecomers = Latecomers::find($parameters);
 
+
         if (count($latecomers) == 0) {
             $this->flash->notice("The search did not find any latecomers");
 
@@ -101,6 +102,30 @@ class LatecomersController extends ControllerBase
         $this->view->latecomers = $latecomers;
     }
 
+    /**
+     * Deletes a User
+     *
+     * @param int $id
+     */
+    public function deleteAction($id)
+    {
+        $latecomers = Latecomers::findFirstById($id);
+        if (!$latecomers) {
+            $this->flash->error("User was not found");
+            return $this->dispatcher->forward([
+                'action' => 'index'
+            ]);
+        }
 
+        if (!$latecomers->delete()) {
+            $this->flash->error($latecomers->getMessages());
+        } else {
+            $this->flash->success("User was deleted");
+        }
+
+        return $this->dispatcher->forward([
+            'action' => 'index'
+        ]);
+    }
 
 }

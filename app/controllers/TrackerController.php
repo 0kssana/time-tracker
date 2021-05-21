@@ -134,7 +134,7 @@ class TrackerController extends ControllerBase
                 ]
             ]);
 
-            print_die($isExist);
+            //print_die($isExist);
 
             if (!count($isExist->date)) {
 
