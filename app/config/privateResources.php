@@ -25,6 +25,30 @@ return new Config([
         ],
         'permissions' => [
             'index'
+        ],
+        'tracker' => [
+            'test',
+            'index'
+        ],
+        'holidays' => [
+            'index',
+            'new',
+            'create',
+            'edit',
+            'save'
+        ],
+        'late' => [
+            'index',
+            'edit',
+            'new',
+            'search',
+            'save',
+            'create'
+        ],
+        'latecomers' => [
+            'index',
+            'search',
+            'delete'
         ]
     ]
 ]);

@@ -1,71 +1,8 @@
 <?php
-//
-//namespace Timetracker\Controllers;
-//
-//use Phalcon\Mvc\Controller;
-//use Timetracker\Models\Tracker;
-//
-//class TrackerController extends ControllerBase
-//{
-//    public function indexAction()
-//    {
-//
-//    }
-//
-//    public function testAction()
-//    {
-//
-//        $user_id = '';
-//        if ($this->session->has('id')) {
-//            // Получение значения
-//            $user_id = $this->session->get('id');
-//        }
-//
-//        $state = "";
-//        if (isset($_POST['state'])) {
-//            $state = $_POST['state'];
-//        }
-//        $time_now = date("H:i");
-//
-//        if ($state == "start")
-//        {
-//            $time = new Tracker();
-//            $time->start_time = $time_now;
-//            $time->state = $state;
-//            $time->user_id = $user_id;
-//            $time->save();
-//        } else if ($state == "stop")
-//        {
-//
-//            $time = Tracker::findFirst("state = 'start'");
-//            $time->end_time = $time_now;
-//            $time->state = 'stop';
-//            $time->update();
-//        }
-//
-//        $time = Tracker::find();
-//        return json_encode($time);
-//    }
-//
-////    public function timesAction()
-////    {
-////        $time = Tracker::find();
-////        $time->toArray();
-////        print_die($time->toArray());
-////    }
-////
-////    public function staffAction()
-////    {
-////        $x = date("H:i");
-////        print_die($x);
-////
-////        $time = new Tracker();
-////    }
-//}
-
 
 namespace Timetracker\Controllers;
 
+use Timetracker\Models\Holidays;
 use Timetracker\Models\Latecomers;
 use Timetracker\Models\Late;
 use Timetracker\Models\TimeData;
@@ -73,16 +10,11 @@ use Timetracker\Models\Users;
 use DateTime;
 use DateTimeZone;
 
-
 class TrackerController extends ControllerBase
 {
     public function indexAction()
     {
-
         $userId = '';
-        //print_die($_GET['month']);
-        //$month = $request->get('month') ??  date("m");
-        //$year = $request->get('year') ?? date("Y");
         if ($this->session->has('id')) {
             // Получение значения
             $userId = $this->session->get('id');
@@ -93,11 +25,27 @@ class TrackerController extends ControllerBase
             $dates[] = date('Y') . "-" . date('m') . "-" . str_pad($i, 2, '0', STR_PAD_LEFT);
         }
         $users = Users::find();
+
+        foreach ($dates as $d){
+            $m = intval(date('m', strtotime($d)));
+        }
+
+        $mc = Holidays::find([
+            'conditions' => 'month = :m:',
+            'bind' => [
+                'm' => $m,
+            ]
+        ]);
+
+
+        $x = Holidays::calc($mc);
+
         $this->view->setVars(
             [
                 'dates' => $dates,
                 'userId' => $userId,
                 'users' => $users,
+                'x' => $x,
             ]
 
         );
@@ -134,8 +82,6 @@ class TrackerController extends ControllerBase
                 ]
             ]);
 
-            //print_die($isExist);
-
             if (!count($isExist->date)) {
 
                 if (strtotime($time->start_time) > strtotime($late->late_time)) {
@@ -149,7 +95,7 @@ class TrackerController extends ControllerBase
                             echo $message;
                         }
                     } else {
-                        echo "Great, a new robot was saved successfully!";
+                        echo "Operation was successful";
                     }
                 }
 
@@ -196,61 +142,5 @@ class TrackerController extends ControllerBase
         }
         return json_encode($time);
     }
-
-    public function staffAction()
-    {
-
-
-        $time = Time::find();
-        $last = $time->getLast();
-        $start = $last->started_time;
-        $stop = $last->stopped_time;
-        $result = (strtotime($start) - strtotime($stop)) / 60;
-        print_die($result);
-
-        $time = new Time();
-        if (isset($_POST['start'])) {
-            $date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
-            $start_time = $date->format('H:i:s');
-
-            $time->started_time = $start_time;
-
-            if ($time->save() === false) {
-                $messages = $time->getMessages();
-
-                foreach ($messages as $message) {
-                    echo $message, "\n";
-                }
-
-            } else {
-
-                print_die(132);
-
-            }
-        } elseif (isset($_POST['stop'])) {
-            $date = new DateTime('now', new DateTimeZone('Asia/Bishkek'));
-            $stop_time = $date->format('H:i:s');
-
-            $time->stop_time = $stop_time;
-
-            $time->save();
-            if ($time->save() === false) {
-                echo "didnt wrote \n";
-                $messages = $time->getMessages();
-
-                foreach ($messages as $message) {
-                    echo $message, "\n";
-                }
-
-
-            } else {
-
-                return $this->response->redirect($this->request->getHTTPReferer());
-
-            }
-        }
-
-    }
-
 
 }

@@ -7,9 +7,13 @@
         </a>
     </div>
 
+
+
+
+
 <div class="calendar" style="margin: 100px">
 
-   <form action="index" method="GET">
+ <form action="index" method="POST">
         <select name="month" onchange="this.form.submit();" class="form-control" style="width: 100px">
             <option value="all" selected="selected">All</option>
             <option value="1">January</option>
@@ -42,7 +46,7 @@
         </select>&nbsp;&nbsp;&nbsp;&nbsp;
 
     </form>
-    <input id="id" type="hidden" name="id" value=""/>
+    <h1> <? echo $x ?> </h1>
 
     <div >
         <input id="id" class="btn btn-primary" type="hidden" name="id" value="">
@@ -84,3 +88,6 @@
     </table>
 
 </div>
+
+
+

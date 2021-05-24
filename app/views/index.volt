@@ -23,6 +23,8 @@
 
 	</body>
 	<footer>
+
+
         {{ partial('partials/footer') }}
 	</footer>
 </html>
