@@ -35,7 +35,8 @@ return new Config([
             'new',
             'create',
             'edit',
-            'save'
+            'save',
+            'delete'
         ],
         'late' => [
             'index',

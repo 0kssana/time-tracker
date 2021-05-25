@@ -246,5 +246,4 @@ class HolidaysController extends ControllerBase
             'action' => "index"
         ]);
     }
-
 }

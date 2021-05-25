@@ -26,14 +26,14 @@ class TrackerController extends ControllerBase
         }
         $users = Users::find();
 
-        foreach ($dates as $d){
-            $m = intval(date('m', strtotime($d)));
+        foreach ($dates as $day){
+            $month = intval(date('m', strtotime($day)));
         }
 
         $mc = Holidays::find([
-            'conditions' => 'month = :m:',
+            'conditions' => 'month = :month:',
             'bind' => [
-                'm' => $m,
+                'month' => $month,
             ]
         ]);
 
