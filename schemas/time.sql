@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 21 2021 г., 14:37
+-- Время создания: Май 25 2021 г., 10:32
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.3.26
 
@@ -107,28 +107,8 @@ INSERT INTO `failed_logins` (`id`, `usersId`, `ipAddress`, `attempted`) VALUES
 (40, 7, '127.0.0.1', 1621328495),
 (41, 3, '127.0.0.1', 1621340234),
 (42, 21, '127.0.0.1', 1621596633),
-(43, 21, '127.0.0.1', 1621596643);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `holiday`
---
-
-CREATE TABLE `holiday` (
-  `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `day` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `month` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `active` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Дамп данных таблицы `holiday`
---
-
-INSERT INTO `holiday` (`id`, `name`, `day`, `month`, `active`) VALUES
-(15, '0', '04', '04', '1');
+(43, 21, '127.0.0.1', 1621596643),
+(44, 1, '127.0.0.1', 1621851659);
 
 -- --------------------------------------------------------
 
@@ -149,8 +129,7 @@ CREATE TABLE `holidays` (
 --
 
 INSERT INTO `holidays` (`id`, `name`, `day`, `month`, `active`) VALUES
-(1, 'New Year', '12', '12', '2'),
-(2, 'Victory day', '09', '05', '2');
+(6, 'Victory Day', '11', '5', '0');
 
 -- --------------------------------------------------------
 
@@ -191,7 +170,12 @@ CREATE TABLE `latecomers` (
 INSERT INTO `latecomers` (`id`, `user_id`, `time`, `date`, `test`) VALUES
 (30, 1, '10:20', '2021-05-21 ', NULL),
 (32, 7, '17:29', '2021-05-21 ', NULL),
-(33, 21, '17:31', '2021-05-21 ', NULL);
+(33, 21, '17:31', '2021-05-21 ', NULL),
+(35, 7, '08:33', '2021-05-24 ', NULL),
+(36, 21, '09:59', '2021-05-24 ', NULL),
+(37, 1, '11:29', '2021-05-24 ', NULL),
+(38, 1, '09:29', '2021-05-25 ', NULL),
+(39, 22, '09:35', '2021-05-25 ', NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +197,8 @@ CREATE TABLE `password_changes` (
 
 INSERT INTO `password_changes` (`id`, `usersId`, `ipAddress`, `userAgent`, `createdAt`) VALUES
 (1, 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 1621228885),
-(2, 16, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 1621308757);
+(2, 16, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 1621308757),
+(3, 22, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 1621913743);
 
 -- --------------------------------------------------------
 
@@ -237,27 +222,41 @@ INSERT INTO `permissions` (`id`, `profilesId`, `resource`, `action`) VALUES
 (2, 3, 'users', 'search'),
 (3, 3, 'profiles', 'index'),
 (4, 3, 'profiles', 'search'),
-(72, 1, 'users', 'index'),
-(73, 1, 'users', 'search'),
-(74, 1, 'users', 'edit'),
-(75, 1, 'users', 'time'),
-(76, 1, 'users', 'update'),
-(77, 1, 'users', 'save'),
-(78, 1, 'users', 'create'),
-(79, 1, 'users', 'delete'),
-(80, 1, 'users', 'changePassword'),
-(81, 1, 'profiles', 'index'),
-(82, 1, 'profiles', 'search'),
-(83, 1, 'profiles', 'edit'),
-(84, 1, 'profiles', 'create'),
-(85, 1, 'profiles', 'delete'),
-(86, 1, 'permissions', 'index'),
-(87, 1, 'holidays', 'index'),
-(88, 1, 'late', 'index'),
-(89, 1, 'latecomers', 'index'),
-(90, 1, 'tracker', 'index'),
-(91, 2, 'users', 'index'),
-(92, 2, 'tracker', 'index');
+(127, 2, 'users', 'index'),
+(128, 2, 'tracker', 'test'),
+(129, 2, 'tracker', 'index'),
+(131, 1, 'users', 'index'),
+(132, 1, 'users', 'search'),
+(133, 1, 'users', 'edit'),
+(134, 1, 'users', 'time'),
+(135, 1, 'users', 'update'),
+(136, 1, 'users', 'save'),
+(137, 1, 'users', 'create'),
+(138, 1, 'users', 'delete'),
+(139, 1, 'users', 'changePassword'),
+(140, 1, 'profiles', 'index'),
+(141, 1, 'profiles', 'search'),
+(142, 1, 'profiles', 'edit'),
+(143, 1, 'profiles', 'create'),
+(144, 1, 'profiles', 'delete'),
+(145, 1, 'permissions', 'index'),
+(146, 1, 'tracker', 'test'),
+(147, 1, 'tracker', 'index'),
+(148, 1, 'holidays', 'index'),
+(149, 1, 'holidays', 'new'),
+(150, 1, 'holidays', 'create'),
+(151, 1, 'holidays', 'edit'),
+(152, 1, 'holidays', 'save'),
+(153, 1, 'holidays', 'delete'),
+(154, 1, 'late', 'index'),
+(155, 1, 'late', 'edit'),
+(156, 1, 'late', 'new'),
+(157, 1, 'late', 'search'),
+(158, 1, 'late', 'save'),
+(159, 1, 'late', 'create'),
+(160, 1, 'latecomers', 'index'),
+(161, 1, 'latecomers', 'search'),
+(162, 1, 'latecomers', 'delete');
 
 -- --------------------------------------------------------
 
@@ -407,7 +406,26 @@ INSERT INTO `success_logins` (`id`, `usersId`, `ipAddress`, `userAgent`) VALUES
 (78, 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
 (79, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
 (80, 21, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
-(81, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36');
+(81, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(82, 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(83, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(84, 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(85, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(86, 21, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(87, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(88, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(89, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(90, 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(91, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(92, 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(93, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(94, 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(95, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(96, 22, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(97, 22, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(98, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(99, 22, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'),
+(100, 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -441,7 +459,21 @@ INSERT INTO `time_data` (`id`, `start_time`, `end_time`, `state`, `user_id`, `wo
 (144, '10:31', '10:31', 'stop', 7, '0', '2021-05-21', ' '),
 (145, '17:15', '17:15', 'stop', 1, '0', '2021-05-21', '01:22'),
 (146, '17:29', '17:29', 'stop', 7, '0', '2021-05-21', ' '),
-(147, '17:31', '17:31', 'stop', 21, '0', '2021-05-21', ' ');
+(147, '17:31', '17:37', 'stop', 21, '0', '2021-05-21', ' '),
+(148, '18:21', '18:21', 'stop', 1, '0', '2021-05-21', '01:22'),
+(149, '08:32', '08:32', 'stop', 1, '0', '2021-05-24', '01:22'),
+(150, '08:33', '08:33', 'stop', 7, '0', '2021-05-24', ' '),
+(151, '08:36', '08:36', 'stop', 7, '0', '2021-05-24', ' '),
+(152, '09:28', '09:38', 'stop', 1, '0', '2021-05-24', '10:22'),
+(153, '09:56', '09:56', 'stop', 1, '0', '2021-05-24', '01:22'),
+(154, '09:57', '09:57', 'stop', 1, '0', '2021-05-24', '01:22'),
+(155, '09:58', '09:58', 'stop', 1, '0', '2021-05-24', '01:22'),
+(156, '09:59', '09:59', 'stop', 21, '0', '2021-05-24', ' '),
+(157, '11:29', '11:29', 'stop', 1, '0', '2021-05-24', '01:22'),
+(158, '16:16', '16:16', 'stop', 1, '0', '2021-05-24', '01:22'),
+(159, '16:25', '16:25', 'stop', 7, '0', '2021-05-24', ' '),
+(160, '09:29', '09:29', 'stop', 1, '0', '2021-05-25', '01:22'),
+(161, '09:35', '09:35', 'stop', 22, '0', '2021-05-25', ' ');
 
 -- --------------------------------------------------------
 
@@ -467,10 +499,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `mustChangePassword`, `profilesId`, `banned`, `suspended`, `active`) VALUES
 (1, 'admin', 'admin@admin.com', '$2y$08$OXRtdkZpeVlhbXlhUklybemGU54EZK4X69CLeux6peV3XwToKR.Ue', 'N', 1, 'N', 'N', 'Y'),
-(2, 'Maks', 'maks@tik.ru', '123456789', 'N', 2, 'N', 'N', 'Y'),
+(2, 'Maks', 'maks@tik.ru', '$2y$08$RWFkVHE0QjAwUkdmUlZqUOCRl76Spxvl5K2EPsFiAwpYK2fTN1jJ6', 'N', 2, 'N', 'N', 'Y'),
 (3, 'Polina', 'polina@gmail.com', '$2y$08$aFA3aEhhb1poRFh3Z1pRcuaPssYr3H4dQ37/p95NfL/84TYBfDNYi', 'N', 2, 'N', 'N', 'Y'),
 (7, 'John Dorian', 'dr.acula@scrub.com', '$2y$08$OXRtdkZpeVlhbXlhUklybemGU54EZK4X69CLeux6peV3XwToKR.Ue', 'N', 2, 'N', 'N', 'Y'),
-(21, 'Egor', 'egor@tik.ru', '$2y$08$a3pVNjBWM3B4dzNxTXFhQOjw2WxLFE4ZwZ4GW07jgxNr/NTHmvTau', 'N', 2, 'N', 'N', 'Y');
+(21, 'Egor', 'egor@tik.ru', '$2y$08$a3pVNjBWM3B4dzNxTXFhQOjw2WxLFE4ZwZ4GW07jgxNr/NTHmvTau', 'N', 2, 'N', 'N', 'Y'),
+(22, 'Elena', 'elena@gmail.com', '$2y$08$ZEc0clBienF0T3o4emNYeefqDnsOgZKukilnj9XYjmA5eSJdfqB4S', 'N', 2, 'N', 'N', 'Y');
 
 --
 -- Индексы сохранённых таблиц
@@ -488,12 +521,6 @@ ALTER TABLE `email_confirmations`
 ALTER TABLE `failed_logins`
   ADD PRIMARY KEY (`id`),
   ADD KEY `usersId` (`usersId`);
-
---
--- Индексы таблицы `holiday`
---
-ALTER TABLE `holiday`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `holidays`
@@ -582,19 +609,13 @@ ALTER TABLE `email_confirmations`
 -- AUTO_INCREMENT для таблицы `failed_logins`
 --
 ALTER TABLE `failed_logins`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT для таблицы `holiday`
---
-ALTER TABLE `holiday`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT для таблицы `holidays`
 --
 ALTER TABLE `holidays`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `late`
@@ -606,19 +627,19 @@ ALTER TABLE `late`
 -- AUTO_INCREMENT для таблицы `latecomers`
 --
 ALTER TABLE `latecomers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT для таблицы `password_changes`
 --
 ALTER TABLE `password_changes`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT для таблицы `profiles`
@@ -630,7 +651,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT для таблицы `remember_tokens`
 --
 ALTER TABLE `remember_tokens`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `reset_passwords`
@@ -642,19 +663,19 @@ ALTER TABLE `reset_passwords`
 -- AUTO_INCREMENT для таблицы `success_logins`
 --
 ALTER TABLE `success_logins`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT для таблицы `time_data`
 --
 ALTER TABLE `time_data`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
