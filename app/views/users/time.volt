@@ -4,6 +4,7 @@
             {{ link_to("users", "Go Back", "class": "btn btn-outline-info") }}
         </li>
     </ul>
+    <!--
 <select id="select-month" selected="selected">
         {% for key, month in months %}
             <option value="{{ key }}">{{month}}</option>
@@ -14,7 +15,7 @@
             <option value="{{ key }}">{{year}}</option>
         {% endfor %}
 </select>
-
+-->
 <h1>List of times by user</h2>
 
 <th id="test"></th>

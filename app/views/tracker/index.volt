@@ -14,6 +14,7 @@
 <div class="calendar" style="margin: 100px">
 
  <form action="index" method="POST">
+ <!--
         <select name="month" onchange="this.form.submit();" class="form-control" style="width: 100px">
             <option value="all" selected="selected">All</option>
             <option value="1">January</option>
@@ -43,7 +44,7 @@
             <option value="2019">2019</option>
             <option value="2020">2020</option>
             <option value="2021" selected="selected">2021</option>
-        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        </select>&nbsp;&nbsp;&nbsp;&nbsp; -->
 
     </form>
     <h1> <? echo $x ?> </h1>
@@ -75,8 +76,7 @@
                     <?php foreach ($user->times as $workTime) { ?>
                         <?php if ($dateTime == $workTime->date && $workTime->user_id == $userId) { ?>
                             <div>
-                                <?php echo $workTime->start_time . " : " . $workTime->end_time. " || " . $workTime->work_time . "<br>" ;
-                                      echo "<p> Total time:" . $workTime->total_time . " </p>"; ?>
+                                <?php echo $workTime->start_time . " : " . $workTime->end_time; ?>
                             </div>
                         <?php } ?>
                     <?php } ?>
@@ -88,6 +88,3 @@
     </table>
 
 </div>
-
-
-
